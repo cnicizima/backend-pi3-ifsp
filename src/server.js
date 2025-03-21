@@ -1,11 +1,12 @@
 import express from 'express';
 import userRouter from './routers/userRouter.js';
+import productRouter from './routers/productRouter.js';
 import cors from 'cors';
 
 
 const app = express();
 
-app.use('/users', userRouter);
+
 app.use(cors());
 app.use(express.json());
 
@@ -17,10 +18,9 @@ app.get('/', ( req , res ) => {
 });
 
 
-
-
 // paths dos roteadores:
 app.use('/users', userRouter);
+app.use('/products', productRouter);
 
 
 
