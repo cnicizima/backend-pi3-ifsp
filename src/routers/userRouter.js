@@ -1,9 +1,9 @@
 import express from 'express'
-import getUserController from '../controllers/Users/getUserController.js';
-import listUserController from '../controllers/Users/listUserController.js';    
-import createUserController from '../controllers/Users/createUserController.js';
-import updateUserController from '../controllers/Users/updateUserController.js';
-import deleteUserController from '../controllers/Users/deleteUSerController.js';
+import getUserController from '../controllers/users/getUserController.js';
+import listUserController from '../controllers/users/listUserController.js';    
+import createUserController from '../controllers/users/createUserController.js';
+import updateUserController from '../controllers/users/updateUserController.js';
+import deleteUserController from '../controllers/users/deleteUSerController.js';
 
 const router = express.Router();
 
