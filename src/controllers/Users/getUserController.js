@@ -4,7 +4,7 @@ export default async function getUserController(req, res) {
 
   const { id } = req.params;
 
-  const result = await getById (id);
+  const result = await getById (+id);
 
   if(!result) {
     return res.status (404).json({ message: 'Usuário não encontrado'})
