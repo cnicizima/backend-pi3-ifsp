@@ -5,7 +5,7 @@ export default async function getProdutoController( req, res) {
     const result = await getById(+idProduto);
 
     if(!result){
-        return res.send(404).json({
+        return res.status(404).json({
             error: "Produto não encontrado"
         })
     }
