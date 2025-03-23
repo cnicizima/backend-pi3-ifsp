@@ -1,6 +1,7 @@
 import express from 'express';
 import userRouter from './routers/userRouter.js';
 import produtoRouter from './routers/produtoRouter.js';
+import enderecoRouter from './routers/enderecoRouter.js';
 import cors from 'cors';
 
 
@@ -21,7 +22,7 @@ app.get('/', ( req , res ) => {
 // paths dos roteadores:
 app.use('/users', userRouter);
 app.use('/produtos', produtoRouter);
-
+app.use('/enderecos', enderecoRouter);
 
 
 app.listen(8000, () => {
