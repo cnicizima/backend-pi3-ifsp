@@ -1,10 +1,10 @@
-import { create } from '../../models/productModels.js';
+import { create } from '../../models/produtoModels.js';
 
-export default async function createProductController(req, res) {
+export default async function createProdutoController(req, res) {
 
-    const product = req.body;
+    const produto = req.body;
 
-    const result = await create(product)
+    const result = await create(produto)
 
     
     if(!result){
@@ -17,7 +17,7 @@ export default async function createProductController(req, res) {
   
       return res.status(201).json({ 
         message: 'Produto criado com sucesso',
-        user: result    
+        produto: result    
       })
 
 }
