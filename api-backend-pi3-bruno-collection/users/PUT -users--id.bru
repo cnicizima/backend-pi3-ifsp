@@ -1,0 +1,23 @@
+meta {
+  name: PUT /users/:id
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8000/users/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "cpf" : "12312312445",
+    "nome": "Ciro Nicizime",
+    "email": "cironicizima@gmail.com",
+    "sexo": "masculino",
+    "telefone": "11-963000000",
+    "nascimento": "2000-03-22T00:00:00.000Z",
+    "password": "123123"
+    }
+}

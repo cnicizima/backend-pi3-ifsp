@@ -48,14 +48,14 @@ model Endereco {
 model Pedido {
   idPedido   Int      @id @default(autoincrement())
   usuarioCpf String   @db.Char(11)
-  enderecoId Int
+  idEndereco Int
   valorTotal Decimal  @db.Decimal(10, 2)
   status     String   @db.VarChar(20)
   dataCompra DateTime @default(now())
   idCupom    Int?
 
   usuario   User       @relation(fields: [usuarioCpf], references: [cpf])
-  endereco  Endereco   @relation(fields: [enderecoId], references: [idEndereco])
+  endereco  Endereco   @relation(fields: [idEndereco], references: [idEndereco])
   pagamento Pagamento?
   cupom     Cupom?     @relation(fields: [idCupom], references: [idCupom])
 
@@ -64,13 +64,13 @@ model Pedido {
 
 model Pagamento {
   idPagamento   Int       @id @default(autoincrement())
-  pedidoId      Int       @unique
+  idPedido      Int       @unique
   metodo        String    @db.VarChar(10)
   status        String    @db.VarChar(10)
   valorPago     Decimal   @db.Decimal(10, 2)
   dataPagamento DateTime?
 
-  pedido Pedido @relation(fields: [pedidoId], references: [idPedido])
+  pedido Pedido @relation(fields: [idPedido], references: [idPedido])
 }
 
 model Produto {
@@ -97,42 +97,42 @@ model Produto {
 
 model Estoque {
   idEstoque  Int @id @default(autoincrement())
-  produtoId  Int @unique
+  idProduto  Int @unique
   quantidade Int @default(0) @db.Int
 
-  produto Produto @relation(fields: [produtoId], references: [idProduto])
+  produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
 model PedidoProduto {
   idPedidoProduto Int     @id @default(autoincrement())
-  pedidoId        Int
-  produtoId       Int
+  idPedido        Int
+  idProduto       Int
   quantidade      Int     @db.Int
   valorItem       Decimal @db.Decimal(10, 2)
 
-  pedido  Pedido  @relation(fields: [pedidoId], references: [idPedido])
-  produto Produto @relation(fields: [produtoId], references: [idProduto])
+  pedido  Pedido  @relation(fields: [idPedido], references: [idPedido])
+  produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
 model Favoritos {
   idFavorito Int    @id @default(autoincrement())
   usuarioCpf String @db.Char(11)
-  produtoId  Int
+  idProduto  Int
 
   usuario User    @relation(fields: [usuarioCpf], references: [cpf])
-  produto Produto @relation(fields: [produtoId], references: [idProduto])
+  produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
 model Avaliacao {
   idAvaliacao Int      @id @default(autoincrement())
   usuarioCpf  String   @db.Char(11)
-  produtoId   Int
+  idProduto   Int
   avaliacao   Decimal  @db.Decimal(2, 1)
   conteudo    String?  @db.Text
   dataCriacao DateTime @default(now())
 
   usuario User    @relation(fields: [usuarioCpf], references: [cpf])
-  produto Produto @relation(fields: [produtoId], references: [idProduto])
+  produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
 model Message {
