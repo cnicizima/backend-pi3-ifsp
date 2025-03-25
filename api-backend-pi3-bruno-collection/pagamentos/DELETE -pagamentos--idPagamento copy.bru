@@ -1,0 +1,22 @@
+meta {
+  name: DELETE /pagamentos/:idPagamento copy
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:8000/pagamentos/1
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "idPedido": 1,
+    "metodo": "cartao",
+    "status": "aprovado",
+    "valorPago": 50.00,
+    "dataPagamento": "2025-03-25T14:30:00.000Z"
+  }
+  
+}
