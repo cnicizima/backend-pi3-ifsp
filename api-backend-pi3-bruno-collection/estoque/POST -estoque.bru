@@ -1,0 +1,18 @@
+meta {
+  name: POST /estoque
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/estoque
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "idProduto": 1,
+    "quantidade": 100
+  }
+}

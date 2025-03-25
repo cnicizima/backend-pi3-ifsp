@@ -1,0 +1,11 @@
+meta {
+  name: DEL /users/:id
+  type: http
+  seq: 2
+}
+
+delete {
+  url: http://localhost:8000/users/2
+  body: none
+  auth: inherit
+}

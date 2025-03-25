@@ -1,0 +1,29 @@
+meta {
+  name: POST /produtos
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "fotoVinho": "https:www.github.com/joao.png",    
+    "nome": "Vinho Syrah",       
+    "descricao": "Vinho de excelente qualidade",      
+    "preco": 109.99,
+    "classificacao": 5.75,  
+    "categoria": "Seco",    
+    "gustativo": "Toque de Nozes",      
+    "olfativo": "Cheiro de grama verde",      
+    "regiao": "Conchágua",        
+    "amadurecimento": "Barricas de Carvalho",
+    "analises": "Não tenho ideia",      
+    "uvas": "Syrah, Cabernet Savignon",         
+    "temperatura": "15° a 17°C"   
+  }
+}
