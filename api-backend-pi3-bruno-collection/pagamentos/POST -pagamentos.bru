@@ -1,0 +1,22 @@
+meta {
+  name: POST /pagamentos
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/pagamentos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "idPedido": 1,
+    "metodo": "cartao",
+    "status": "aprovado",
+    "valorPago": 150.00,
+    "dataPagamento": "2025-03-25T14:30:00.000Z"
+  }
+  
+}

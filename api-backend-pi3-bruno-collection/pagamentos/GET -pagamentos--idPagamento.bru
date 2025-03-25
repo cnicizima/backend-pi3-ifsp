@@ -1,0 +1,11 @@
+meta {
+  name: GET /pagamentos/:idPagamento
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8000/pagamentos/1
+  body: none
+  auth: inherit
+}
