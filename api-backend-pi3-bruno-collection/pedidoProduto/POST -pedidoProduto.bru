@@ -1,0 +1,21 @@
+meta {
+  name: POST /pedidoProduto
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/pedidoProduto
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "idPedido": 1,
+    "idProduto": 3,
+    "quantidade": 2,
+    "valorItem": 89.90
+  }
+  
+}

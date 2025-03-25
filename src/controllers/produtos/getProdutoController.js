@@ -11,6 +11,6 @@ export default async function getProdutoController( req, res) {
     }
 
     return res.status(200).json({
-        product: result
+  produto: result      
     })
 }
