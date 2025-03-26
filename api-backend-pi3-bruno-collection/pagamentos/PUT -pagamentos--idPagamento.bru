@@ -1,7 +1,7 @@
 meta {
   name: PUT /pagamentos/:idPagamento
   type: http
-  seq: 3
+  seq: 5
 }
 
 put {
@@ -14,7 +14,7 @@ body:json {
   {
     "idPedido": 1,
     "metodo": "cartao",
-    "status": "aprovado",
+    "status": "negado",
     "valorPago": 50.00,
     "dataPagamento": "2025-03-25T14:30:00.000Z"
   }

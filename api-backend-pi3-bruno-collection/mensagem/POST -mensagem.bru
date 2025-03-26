@@ -1,0 +1,21 @@
+meta {
+  name: POST /mensagem
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/mensagem
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "usuarioCpf": "12345678901",
+    "assunto": "Dúvida sobre o vinho",
+    "conteudo": "Esse vinho harmoniza bem com carnes vermelhas?",
+    "dataEnvio": "2025-03-26T16:30:00.000Z"
+  }
+  
+}
