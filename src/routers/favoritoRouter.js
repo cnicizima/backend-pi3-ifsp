@@ -8,9 +8,9 @@ import deleteFavoritoController from '../controllers/favoritos/deleteFavoritoCon
 const router = express.Router();
 
 router.get('/', listFavoritoController);
-router.get('/:id', getFavoritoController);
+router.get('/:idFavorito', getFavoritoController);
 router.post('/', createFavoritoController);
-router.put('/:id', updateFavoritoController);
-router.delete('/:id', deleteFavoritoController);
+router.put('/:idFavorito', updateFavoritoController);
+router.delete('/:idFavorito', deleteFavoritoController);
 
 export default router;
