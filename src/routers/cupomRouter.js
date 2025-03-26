@@ -8,9 +8,9 @@ import deleteCupomController from '../controllers/cupom/deleteCupomController.js
 const router = express.Router();
 
 router.get('/', listCupomController);
-router.get('/:id', getCupomController);
+router.get('/:idCupom', getCupomController);
 router.post('/', createCupomController);
-router.put('/:id', updateCupomController);
-router.delete('/:id', deleteCupomController);
+router.put('/:idCupom', updateCupomController);
+router.delete('/:idCupom', deleteCupomController);
 
 export default router;

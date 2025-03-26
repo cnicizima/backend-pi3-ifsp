@@ -4,7 +4,7 @@ export default async function updateFavoritoController(req, res) {
   const { idFavorito } = req.params;
   const favorito = req.body;
 
-  const result = await update(idFavorito, favorito);
+  const result = await update(+idFavorito, favorito);
 
   if (!result) {
     return res.status(500).json({

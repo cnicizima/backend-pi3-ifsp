@@ -3,7 +3,7 @@ import { getById } from '../../models/mensagemModels.js';
 export default async function getMensagemController(req, res) {
   const { idMensagem } = req.params;
 
-  const result = await getById(idMensagem);
+  const result = await getById(+idMensagem);
 
   if (!result) {
     return res.status(404).json({

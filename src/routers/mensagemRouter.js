@@ -8,9 +8,9 @@ import deleteMensagemController from '../controllers/mensagem/deleteMensagemCont
 const router = express.Router();
 
 router.get('/', listMensagemController);
-router.get('/:id', getMensagemController);
+router.get('/:idMensagem', getMensagemController);
 router.post('/', createMensagemController);
-router.put('/:id', updateMensagemController);
-router.delete('/:id', deleteMensagemController);
+router.put('/:idMensagem', updateMensagemController);
+router.delete('/:idMensagem', deleteMensagemController);
 
 export default router;
