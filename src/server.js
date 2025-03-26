@@ -7,6 +7,8 @@ import userRouter from './routers/userRouter.js';
 import pagamentoRouter from './routers/pagamentoRouter.js';
 import pedidoProdutoRouter from './routers/pedidoProdutoRouter.js';
 import favoritoRouter from './routers/favoritoRouter.js';
+import avaliacaoRouter from './routers/avaliacaoRouter.js'
+
 
 import cors from 'cors';
 
@@ -34,7 +36,7 @@ app.use('/pedidos', pedidoRouter);
 app.use('/pagamentos', pagamentoRouter);
 app.use('/pedidoProduto', pedidoProdutoRouter);
 app.use('/favoritos', favoritoRouter);
-
+app.use('/avaliacao', avaliacaoRouter);
 
 app.listen(8000, () => {
   console.log('Server is running on http://localhost:8000');
