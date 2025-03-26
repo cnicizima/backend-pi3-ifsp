@@ -26,7 +26,7 @@ model User {
   pedidos    Pedido[]
   avaliacoes Avaliacao[]
   favoritos  Favoritos[]
-  mensagens  Message[]
+  mensagens  Mensagem[]
 }
 
 model Endereco {
@@ -135,8 +135,8 @@ model Avaliacao {
   produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
-model Message {
-  idMessage  Int      @id @default(autoincrement())
+model Mensagem {
+  idMensagem  Int      @id @default(autoincrement())
   usuarioCpf String   @db.Char(11)
   assunto    String   @db.VarChar(255)
   conteudo   String   @db.Text
