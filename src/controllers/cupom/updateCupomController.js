@@ -4,7 +4,7 @@ export default async function updateCupomController(req, res) {
   const { idCupom } = req.params;
   const cupom = req.body;
 
-  const result = await update(idCupom, cupom);
+  const result = await update(+idCupom, cupom);
 
   if (!result) {
     return res.status(500).json({

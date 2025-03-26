@@ -13,9 +13,9 @@ datasource db {
 model User {
   id         Int      @unique @default(autoincrement())
   cpf        String   @id @db.Char(11)
-  nome       String   @db.VarChar(100)
-  email      String   @unique @db.VarChar(150)
-  sexo       String?  @db.VarChar(10)
+  nome       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  sexo       String?  @db.VarChar(30)
   telefone   String   @db.VarChar(15)
   nascimento DateTime @db.Date
   password   String   @db.VarChar(255)
@@ -32,12 +32,12 @@ model User {
 model Endereco {
   idEndereco  Int     @id @default(autoincrement())
   usuarioCpf  String  @db.Char(11)
-  apelido     String  @db.VarChar(50)
+  apelido     String  @db.VarChar(100)
   cep         String  @db.Char(8)
   rua         String  @db.VarChar(255)
   numero      String  @db.VarChar(10)
-  complemento String? @db.VarChar(100)
-  cidade      String  @db.VarChar(100)
+  complemento String? @db.VarChar(255)
+  cidade      String  @db.VarChar(255)
   estado      String  @db.Char(2)
 
   usuario User @relation(fields: [usuarioCpf], references: [cpf])
@@ -50,7 +50,7 @@ model Pedido {
   usuarioCpf String   @db.Char(11)
   idEndereco Int
   valorTotal Decimal  @db.Decimal(10, 2)
-  status     String   @db.VarChar(20)
+  status     String   @db.VarChar(100)
   dataCompra DateTime @default(now())
   idCupom    Int?
 
@@ -65,8 +65,8 @@ model Pedido {
 model Pagamento {
   idPagamento   Int       @id @default(autoincrement())
   idPedido      Int       @unique
-  metodo        String    @db.VarChar(10)
-  status        String    @db.VarChar(10)
+  metodo        String    @db.VarChar(100)
+  status        String    @db.VarChar(100)
   valorPago     Decimal   @db.Decimal(10, 2)
   dataPagamento DateTime?
 
@@ -76,14 +76,14 @@ model Pagamento {
 model Produto {
   idProduto      Int     @id @default(autoincrement())
   fotoVinho      String? @db.Text //url da foto
-  nome           String  @db.VarChar(150)
+  nome           String  @db.VarChar(255)
   descricao      String  @db.Text
   preco          Decimal @db.Decimal(10, 2)
   classificacao  Decimal @db.Decimal(3, 2)
   categoria      String  @db.VarChar(50)
   gustativo      String? @db.Text
   olfativo       String? @db.Text
-  regiao         String? @db.VarChar(100)
+  regiao         String? @db.VarChar(150)
   amadurecimento String? @db.Text
   analises       String? @db.Text
   uvas           String? @db.VarChar(255)

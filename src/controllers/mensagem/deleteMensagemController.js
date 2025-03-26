@@ -3,7 +3,7 @@ import { remove } from '../../models/mensagemModels.js';
 export default async function deleteMensagemController(req, res) {
   const { idMensagem } = req.params;
 
-  const result = await remove(idMensagem);
+  const result = await remove(+idMensagem);
 
   if (!result) {
     return res.status(500).json({

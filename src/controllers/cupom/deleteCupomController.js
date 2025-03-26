@@ -3,7 +3,7 @@ import { remove } from '../../models/cupomModels.js';
 export default async function deleteCupomController(req, res) {
   const { idCupom } = req.params;
 
-  const result = await remove(idCupom);
+  const result = await remove(+idCupom);
 
   if (!result) {
     return res.status(500).json({
