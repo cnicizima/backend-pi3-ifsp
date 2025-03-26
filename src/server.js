@@ -9,6 +9,7 @@ import pedidoProdutoRouter from './routers/pedidoProdutoRouter.js';
 import favoritoRouter from './routers/favoritoRouter.js';
 import avaliacaoRouter from './routers/avaliacaoRouter.js'
 import mensagemRouter from './routers/mensagemRouter.js';
+import cupomRouter from './routers/cupomRouter.js'
 
 
 import cors from 'cors';
@@ -39,7 +40,7 @@ app.use('/pedidoProduto', pedidoProdutoRouter);
 app.use('/favoritos', favoritoRouter);
 app.use('/avaliacao', avaliacaoRouter);
 app.use('/mensagem', mensagemRouter)
-
+app.use('/cupom', cupomRouter)
 
 app.listen(8000, () => {
   console.log('Server is running on http://localhost:8000');

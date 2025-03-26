@@ -1,0 +1,22 @@
+meta {
+  name: PUT /avaliacao/:idAvaliacao
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8000/avaliacao/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "usuarioCpf": "12345678901",
+    "idProduto": 1,
+    "avaliacao": 2.5,
+    "conteudo": "Ótimo vinho, sabor incrível!",
+    "dataCriacao": "2025-03-26T16:00:00.000Z"
+  }
+  
+}

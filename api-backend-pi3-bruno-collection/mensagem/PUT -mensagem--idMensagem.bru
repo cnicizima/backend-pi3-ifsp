@@ -1,0 +1,21 @@
+meta {
+  name: PUT /mensagem/:idMensagem
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8000/mensagem/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "usuarioCpf": "12345678901",
+    "assunto": "Dúvida sobre o vinho",
+    "conteudo": "Esse vinho harmoniza bem com peixes?",
+    "dataEnvio": "2025-03-26T16:30:00.000Z"
+  }
+  
+}
