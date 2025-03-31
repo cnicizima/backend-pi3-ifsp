@@ -21,6 +21,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Usando Helmet para segurança adicional, incluindo HSTS
+app.use(helmet());
+
+// Configuração de HSTS (HTTP Strict Transport Security)
+app.use(helmet.hsts({
+  maxAge: 31536000, // Define o período de validade do HSTS em segundos (1 ano)
+  includeSubDomains: true, // Aplica HSTS a todos os subdomínios
+  preload: true, // Solicita o site para ser incluído na lista de pré-carregamento HSTS dos navegadores
+}));
+
+// Certificados SSL (em produção, você usaria um certificado real)
+const sslOptions = {
+  key: fs.readFileSync('./key.pem'),   // Caminho para a chave privada
+  cert: fs.readFileSync('./cert.pem'), // Caminho para o certificado
+};
+
 
 app.get('/', ( req , res ) => {
   return res.json({
