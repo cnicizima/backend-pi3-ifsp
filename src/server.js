@@ -51,8 +51,8 @@ app.use(helmet.hsts({
 
 // Certificados SSL (criado apenas para desenvolvimento local com o generate-cert.js, para produçao, precisa obter SSL pago)
 const sslOptions = {
-  key: fs.readFileSync('./src/key.pem'),   // Caminho para a chave privada
-  cert: fs.readFileSync('./src/cert.pem'), // Caminho para o certificado
+  key: fs.readFileSync('./src/certificate-ssl/key.pem'),   // Caminho para a chave privada
+  cert: fs.readFileSync('./src/certificate-ssl/cert.pem'), // Caminho para o certificado
 };
 
 
