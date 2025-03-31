@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "name": "api-backend-pi3",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "size": 0.012681007385253906,
+  "filesCount": 66,
+  "clientCertificates": {
+    "enabled": true,
+    "certs": []
+  }
+}

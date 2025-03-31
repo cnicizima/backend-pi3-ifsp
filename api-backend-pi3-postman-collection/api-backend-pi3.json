@@ -1,0 +1,1619 @@
+{
+  "info": {
+    "name": "api-backend-pi3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "/avaliacao",
+      "item": [
+        {
+          "name": "DELETE /avaliacao/:idAvaliacao",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/avaliacao/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "avaliacao",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /avaliacao/:idAvaliacao",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/avaliacao/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "avaliacao",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /avaliacao",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/avaliacao",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "avaliacao"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /avaliacao",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/avaliacao",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "avaliacao"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 1,\r\n  \"avaliacao\": 4.5,\r\n  \"conteudo\": \"Ótimo vinho, sabor incrível!\",\r\n  \"dataCriacao\": \"2025-03-26T16:00:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /avaliacao/:idAvaliacao",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/avaliacao/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "avaliacao",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 1,\r\n  \"avaliacao\": 2.5,\r\n  \"conteudo\": \"Ótimo vinho, sabor incrível!\",\r\n  \"dataCriacao\": \"2025-03-26T16:00:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/enderecos",
+      "item": [
+        {
+          "name": "DELETE /enderecos/:idEndereco",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/enderecos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "enderecos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /enderecos/:idEndereco",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/enderecos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "enderecos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /enderecos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/enderecos/",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "enderecos",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /enderecos",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/enderecos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "enderecos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"apelido\": \"Casa\",\r\n  \"cep\": \"01001000\",\r\n  \"rua\": \"Rua Exemplo\",\r\n  \"numero\": \"123\",\r\n  \"complemento\": \"Apto 101\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"estado\": \"SP\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /enderecos:idEndereco",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/enderecos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "enderecos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"apelido\": \"Escritorio\",\r\n  \"cep\": \"01001000\",\r\n  \"rua\": \"Rua Exemplo\",\r\n  \"numero\": \"321\",\r\n  \"complemento\": \"Apto 101\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"estado\": \"SP\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/estoque",
+      "item": [
+        {
+          "name": "DELETE /estoque:/idEstoque",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/estoque/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "estoque",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /estoque:/idEstoque",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/estoque/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "estoque",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /estoque",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/estoque/",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "estoque",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /estoque",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/estoque",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "estoque"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 100\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /estoque/:idEstoque",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/estoque/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "estoque",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 50\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/cupom",
+      "item": [
+        {
+          "name": "DELETE /cupom/:idCupom",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/cupom",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cupom"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /cupom/:idCupom",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/cupom/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cupom",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /cupom",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/cupom",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cupom"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /cupom",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/cupom",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cupom"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"codigo\": \"PROMO10\",\r\n  \"desconto\": 10.00\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /cupom/:idCupom",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/cupom",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "cupom"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"codigo\": \"PROMO5\",\r\n  \"desconto\": 5.00\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/favoritos",
+      "item": [
+        {
+          "name": "DELETE /favoritos/:idFavorito",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/favoritos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "favoritos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /favoritos/:idFavorito",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/favoritos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "favoritos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /favoritos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/favoritos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "favoritos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PUT /favoritos/:idFavorito",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/favoritos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "favoritos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 2\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /favoritos",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/favoritos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "favoritos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/mensagem",
+      "item": [
+        {
+          "name": "DELETE /mensagem/:idMensagem",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/mensagem/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "mensagem",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /mensagem/:idMensagem",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/mensagem/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "mensagem",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /mensagem",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/mensagem",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "mensagem"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /mensagem",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/mensagem",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "mensagem"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"assunto\": \"Dúvida sobre o vinho\",\r\n  \"conteudo\": \"Esse vinho harmoniza bem com carnes vermelhas?\",\r\n  \"dataEnvio\": \"2025-03-26T16:30:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /mensagem/:idMensagem",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/mensagem/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "mensagem",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"assunto\": \"Dúvida sobre o vinho\",\r\n  \"conteudo\": \"Esse vinho harmoniza bem com peixes?\",\r\n  \"dataEnvio\": \"2025-03-26T16:30:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/pagamentos",
+      "item": [
+        {
+          "name": "DELETE /pagamentos/:idPagamento copy",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pagamentos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamentos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /pagamentos/:idPagamento",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pagamentos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamentos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /pagamentos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pagamentos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamentos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /pagamentos",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pagamentos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamentos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"Cartão\",\r\n  \"status\": \"Pago\",\r\n  \"valorPago\": 189.99,\r\n  \"dataPagamento\": \"2025-03-26T15:30:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /pagamentos/:idPagamento",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pagamentos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pagamentos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"cartao\",\r\n  \"status\": \"negado\",\r\n  \"valorPago\": 50.00,\r\n  \"dataPagamento\": \"2025-03-25T14:30:00.000Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/pedidos",
+      "item": [
+        {
+          "name": "DELETE /pedidos/:idPedido",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /pedidos/:idPedido",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /pedidos",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /pedidos",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idEndereco\": 1,\r\n  \"valorTotal\": 189.99,\r\n  \"status\": \"Pendente\",\r\n  \"idCupom\": 1\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /pedidos/:idPedido",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idEndereco\": 1,\r\n  \"valorTotal\": 129.99,\r\n  \"status\": \"Pendente\",\r\n  \"idCupom\": 1\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/pedidoProduto",
+      "item": [
+        {
+          "name": "DELETE / pedidoProduto/:idPedidoProduto",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidoProduto/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidoProduto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET / pedidoProduto/:idPedidoProduto",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidoProduto/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidoProduto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET / pedidoProduto",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidoProduto",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidoProduto"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /pedidoProduto",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidoProduto",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidoProduto"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idPedido\": 1,\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 1,\r\n  \"valorItem\": 189.99\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT / pedidoProduto/:idPedidoProduto",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/pedidoProduto/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "pedidoProduto",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idPedido\": 1,\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 10,\r\n  \"valorItem\": 189.99\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/produtos",
+      "item": [
+        {
+          "name": "DEL /produtos/:idProduto",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/produtos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /produtos/:idProduto",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/produtos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /produtos/",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/produtos/",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "produtos",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /produtos",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/produtos",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "produtos"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Vinho Tinto Reserva\",\r\n  \"descricao\": \"Vinho de alta qualidade, envelhecido 10 anos.\",\r\n  \"preco\": 199.99,\r\n  \"classificacao\": 4.7,\r\n  \"categoria\": \"Tinto\",\r\n  \"gustativo\": \"Encorpado e macio\",\r\n  \"olfativo\": \"Notas de frutas vermelhas\",\r\n  \"regiao\": \"Mendoza - Argentina\",\r\n  \"amadurecimento\": \"12 meses em barris de carvalho\",\r\n  \"analises\": \"Premiação Ouro 2023\",\r\n  \"uvas\": \"Cabernet Sauvignon\",\r\n  \"temperatura\": \"16°C\",\r\n  \"fotoVinho\": \"https://exemplo.com/vinho.jpg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /produtos/:idProduto",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/produtos/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Vinho Branco Reserva\",\r\n  \"descricao\": \"Vinho de alta qualidade, envelhecido 10 anos.\",\r\n  \"preco\": 199.99,\r\n  \"classificacao\": 4.7,\r\n  \"categoria\": \"Branco\",\r\n  \"gustativo\": \"Encorpado e macio\",\r\n  \"olfativo\": \"Notas de frutas vermelhas\",\r\n  \"regiao\": \"Mendoza - Argentina\",\r\n  \"amadurecimento\": \"12 meses em barris de carvalho\",\r\n  \"analises\": \"Premiação Ouro 2023\",\r\n  \"uvas\": \"Cabernet Sauvignon\",\r\n  \"temperatura\": \"16°C\",\r\n  \"fotoVinho\": \"https://exemplo.com/vinho.jpg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "/users",
+      "item": [
+        {
+          "name": "DEL /users/:id",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/users/2",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "users",
+                "2"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /users/:id",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/users/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "users",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /users",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/users/1",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "users",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /users",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/users",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"1990-05-15T00:00:00.000Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /users/:id",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://localhost:8000/users/3",
+              "protocol": "https",
+              "host": [
+                "localhost:8000"
+              ],
+              "path": [
+                "users",
+                "3"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987000000\",\r\n  \"nascimento\": \"1990-05-15T00:00:00.000Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "bruno",
+      "event": []
+    }
+  ],
+  "variable": []
+}
