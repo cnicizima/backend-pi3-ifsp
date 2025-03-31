@@ -13,13 +13,31 @@ import cupomRouter from './routers/cupomRouter.js'
 
 
 import cors from 'cors';
+import rateLimit from 'express-rate-limit'; 
+import fs from 'fs'; 
+import https from 'https';
+import helmet from 'helmet';
 
 
 const app = express();
 
 
+
+// Configuração de Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // Limita a 100 requisições por IP no intervalo de 15 minutos
+  message: 'Too many requests, please try again later.', // Mensagem caso o limite seja atingido
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+
+
+app.use(limiter); // Aplicar rate limiting globalmente para todas as rotas
 app.use(cors());
 app.use(express.json());
+
 
 // Usando Helmet para segurança adicional, incluindo HSTS
 app.use(helmet());
@@ -31,10 +49,10 @@ app.use(helmet.hsts({
   preload: true, // Solicita o site para ser incluído na lista de pré-carregamento HSTS dos navegadores
 }));
 
-// Certificados SSL (em produção, você usaria um certificado real)
+// Certificados SSL (criado apenas para desenvolvimento local com o generate-cert.js, para produçao, precisa obter SSL pago)
 const sslOptions = {
-  key: fs.readFileSync('./key.pem'),   // Caminho para a chave privada
-  cert: fs.readFileSync('./cert.pem'), // Caminho para o certificado
+  key: fs.readFileSync('./src/key.pem'),   // Caminho para a chave privada
+  cert: fs.readFileSync('./src/cert.pem'), // Caminho para o certificado
 };
 
 
@@ -58,6 +76,9 @@ app.use('/avaliacao', avaliacaoRouter);
 app.use('/mensagem', mensagemRouter)
 app.use('/cupom', cupomRouter)
 
-app.listen(8000, () => {
-  console.log('Server is running on http://localhost:8000');
+
+
+// Configuração do servidor HTTPS
+https.createServer(sslOptions, app).listen(8000, () => {
+  console.log('Servidor HTTPS rodando em https://localhost:8000');
 });
