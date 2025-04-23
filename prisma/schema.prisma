@@ -39,6 +39,7 @@ model Endereco {
   complemento String? @db.VarChar(255)
   cidade      String  @db.VarChar(255)
   estado      String  @db.Char(2)
+  bairro      String  @db.VarChar(255)
 
   usuario User @relation(fields: [usuarioCpf], references: [cpf])
 
