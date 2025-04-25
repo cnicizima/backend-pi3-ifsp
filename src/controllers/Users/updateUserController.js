@@ -19,5 +19,3 @@ export default async function updateUserController(req, res) {
       user: result
     })
   }
-  
-  
