@@ -768,7 +768,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"assunto\": \"Dúvida sobre o vinho\",\r\n  \"conteudo\": \"Esse vinho harmoniza bem com carnes vermelhas?\",\r\n  \"dataEnvio\": \"2025-03-26T16:30:00.000Z\"\r\n}\r\n",
+							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"assunto\": \"Dúvida sobre o vinho\",\r\n  \"conteudo\": \"Esse vinho harmoniza bem com carnes vermelhas?\",\r\n  \"dataEnvio\": \"2025-03-26T00:00:00Z\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -904,7 +904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"Cartão\",\r\n  \"status\": \"Pago\",\r\n  \"valorPago\": 189.99,\r\n  \"dataPagamento\": \"2025-03-26T15:30:00.000Z\"\r\n}\r\n",
+							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"Cartão\",\r\n  \"status\": \"Pago\",\r\n  \"valorPago\": 189.99,\r\n  \"dataPagamento\": \"2025-03-26T00:00:00Z\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -935,7 +935,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"cartao\",\r\n  \"status\": \"negado\",\r\n  \"valorPago\": 50.00,\r\n  \"dataPagamento\": \"2025-03-25T14:30:00.000Z\"\r\n}\r\n",
+							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"cartao\",\r\n  \"status\": \"negado\",\r\n  \"valorPago\": 50.00,\r\n  \"dataPagamento\": \"2025-03-25T00:00:00Z\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1378,7 +1378,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8000/users/2",
+							"raw": "https://localhost:8000/users/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1386,7 +1386,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1448,7 +1448,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"1990-05-15T00:00:00.000Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"1990-05-15T00:00:00Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1479,7 +1479,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987000000\",\r\n  \"nascimento\": \"1990-05-15T00:00:00.000Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987000000\",\r\n  \"nascimento\": \"1991-05-15T00:00:00Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1487,7 +1487,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8000/users/1",
+							"raw": "https://localhost:8000/users/4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1495,7 +1495,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"1"
+								"4"
 							]
 						}
 					},

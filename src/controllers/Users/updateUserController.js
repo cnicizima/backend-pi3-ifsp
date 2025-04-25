@@ -34,6 +34,7 @@ export default async function updateUserController(req, res) {
     }
 
     return res.status(200).json({
+
       message: "Usuário atualizado com sucesso.",
       user: result,
   });
@@ -46,3 +47,6 @@ export default async function updateUserController(req, res) {
 }
 }
   
+
+      
+

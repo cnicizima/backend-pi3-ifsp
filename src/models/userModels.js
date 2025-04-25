@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
+
 const userSchema = z.object({
     id: z.number({
         invalid_type_error: "O id deve ser um valor numérico.",
@@ -55,6 +56,7 @@ const userSchema = z.object({
     return userSchema.safeParse(user)
 } 
 
+
 export async function getById(id) {
     const result = await prisma.user.findUnique({
         where: {
@@ -76,7 +78,7 @@ export async function create(user) {
     return result;
 }
 
-export async function update(id, user){
+export async function update(id, user) {
     const result = await prisma.user.update({
         where: {
             id: id
