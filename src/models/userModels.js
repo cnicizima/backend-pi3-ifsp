@@ -22,7 +22,7 @@ const userSchema = z.object({
     })
     .email({ message: "Email inválido" })
     .max(255, { message: "O email deve ter no máximo 255 caracteres." }),
-    sexo: z.strng().max(30).nullable(),
+    sexo: z.string().max(30).nullable(),
 
     telefone: z.string().min(10).max(15, { message: "Telefone inválido" }),
 
