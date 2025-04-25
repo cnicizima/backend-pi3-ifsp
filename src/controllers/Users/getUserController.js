@@ -1,16 +1,45 @@
-import { getById } from '../../models/userModels.js' 
+import { getById, userValidator } from '../../models/userModels.js' 
 
 export default async function getUserController(req, res) {
 
-  const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-  const result = await getById (+id);
+    // Validação do ID
+    if (!id || isNaN(+id)) {
+        return res.status(400).json({
+            message: "ID inválido. Certifique-se de que o ID é um número válido.",
+        });
+    }
 
-  if(!result) {
-    return res.status (404).json({ message: 'Usuário não encontrado'})
+    // Busca o usuário pelo ID
+    const result = await getById(+id);
+
+    if (!result) {
+        return res.status(404).json({
+            message: "Usuário não encontrado.",
+        });
+    }
+
+    const { success, error } = userValidator(result, { name: true, email: true, pass: true });
+
+    if (!success) {
+        return res.status(400).json({
+            message: "Erro ao validar os dados do usuário!",
+            errors: error.flatten().fieldErrors,
+        });
+    }
+
+    return res.status(200).json({
+        message: "Usuário encontrado com sucesso.",
+        user: result,
+    });
+} catch (err) {
+    // Tratamento de erros inesperados
+    console.error("Erro ao buscar usuário:", err);
+    return res.status(500).json({
+        message: "Erro interno do servidor.",
+    });
   }
-
-  return res.status(200).json({
-    user: result
-  })
 }
+ 
