@@ -26,3 +26,5 @@ Essa sequência garante que todas as dependências sejam atendidas para testar o
 
 
 Dá para testar direto no thunderclient também se os endpoints estiverem corretos. Fiz no postman porque o thunder não deixa fazer uma coleção grande de requests.
+
+não é necessário usar o produtoValidator no list, pois a listagem geralmente não envolve validação de dados, mas coloquei para validar as listas com tratamento de erros.
