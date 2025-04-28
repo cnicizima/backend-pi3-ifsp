@@ -1,18 +1,39 @@
-import { remove } from '../../models/mensagemModels.js';
+import { remove, mensagemValidator } from "../../models/mensagemModels.js";
 
 export default async function deleteMensagemController(req, res) {
-  const { idMensagem } = req.params;
+  try {
+    const { idMensagem } = req.params;
 
-  const result = await remove(+idMensagem);
+    // Validação do ID da mensagem
+    const { success, error } = mensagemValidator({
+      idMensagem: Number(idMensagem),
+    });
 
-  if (!result) {
+    if (!success) {
+      return res.status(400).json({
+        message: "Erro ao validar o ID da mensagem!",
+        errors: error,
+      });
+    }
+
+    // Remoção da mensagem
+    const result = await remove(Number(idMensagem));
+
+    if (!result) {
+      return res.status(404).json({
+        message: "Mensagem não encontrada.",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Mensagem removida com sucesso.",
+      mensagem: result,
+    });
+  } catch (err) {
+    // Captura e trata erros inesperados
+    console.error("Erro ao remover mensagem:", err);
     return res.status(500).json({
-      message: 'Erro ao remover mensagem',
+      message: "Erro interno do servidor.",
     });
   }
-
-  return res.status(200).json({
-    message: 'Mensagem removida com sucesso',
-    mensagem: result,
-  });
 }

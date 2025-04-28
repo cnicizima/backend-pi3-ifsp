@@ -1,15 +1,39 @@
-import { getById } from '../../models/avaliacaoModels.js';
+import { getById, avaliacaoValidator } from "../../models/avaliacaoModels.js";
 
 export default async function getAvaliacaoController(req, res) {
-  const { idAvaliacao } = req.params;
+  try {
+    const { idAvaliacao } = req.params;
 
-  const result = await getById(+idAvaliacao);
+    // Validação do ID da avaliação
+    const { success, error } = avaliacaoValidator({
+      idAvaliacao: Number(idAvaliacao),
+    });
 
-  if (!result) {
-    return res.status(404).json({
-      message: 'Avaliação não encontrada',
+    if (!success) {
+      return res.status(400).json({
+        message: "Erro ao validar o ID da avaliação!",
+        errors: error.flatten().fieldErrors,
+      });
+    }
+
+    // Busca a avaliação pelo ID
+    const result = await getById(Number(idAvaliacao));
+
+    if (!result) {
+      return res.status(404).json({
+        message: "Avaliação não encontrada.",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Avaliação encontrada com sucesso.",
+      avaliacao: result,
+    });
+  } catch (err) {
+    // Captura e trata erros inesperados
+    console.error("Erro ao buscar avaliação:", err);
+    return res.status(500).json({
+      message: "Erro interno do servidor.",
     });
   }
-
-  return res.status(200).json(result);
 }

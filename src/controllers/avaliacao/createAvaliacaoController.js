@@ -1,18 +1,37 @@
-import { create } from '../../models/avaliacaoModels.js';
+import { create, avaliacaoValidator } from "../../models/avaliacaoModels.js";
 
 export default async function createAvaliacaoController(req, res) {
-  const avaliacao = req.body;
+  try {
+    const avaliacao = req.body;
 
-  const result = await create(avaliacao);
+    // Validação dos dados da avaliação
+    const { success, error } = avaliacaoValidator(avaliacao);
 
-  if (!result) {
+    if (!success) {
+      return res.status(400).json({
+        message: "Erro ao validar os dados da avaliação!",
+        errors: error.flatten().fieldErrors,
+      });
+    }
+
+    // Criação da avaliação
+    const result = await create(avaliacao);
+
+    if (!result) {
+      return res.status(500).json({
+        message: "Erro ao criar avaliação",
+      });
+    }
+
+    return res.status(201).json({
+      message: "Avaliação criada com sucesso",
+      avaliacao: result,
+    });
+  } catch (err) {
+    // Captura e trata erros inesperados
+    console.error("Erro ao criar avaliação:", err);
     return res.status(500).json({
-      message: 'Erro ao criar avaliação',
+      message: "Erro interno do servidor.",
     });
   }
-
-  return res.status(201).json({
-    message: 'Avaliação criada com sucesso',
-    avaliacao: result,
-  });
 }

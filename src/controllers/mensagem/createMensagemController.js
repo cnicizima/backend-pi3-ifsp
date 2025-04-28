@@ -1,18 +1,37 @@
-import { create } from '../../models/mensagemModels.js';
+import { create, mensagemValidator } from "../../models/mensagemModels.js";
 
 export default async function createMensagemController(req, res) {
-  const mensagem = req.body;
+  try {
+    const mensagem = req.body;
 
-  const result = await create(mensagem);
+    // Validação dos dados da mensagem
+    const { success, error } = mensagemValidator(mensagem);
 
-  if (!result) {
+    if (!success) {
+      return res.status(400).json({
+        message: "Erro ao validar os dados da mensagem!",
+        errors: error,
+      });
+    }
+
+    // Criação da mensagem
+    const result = await create(mensagem);
+
+    if (!result) {
+      return res.status(500).json({
+        message: "Erro ao criar mensagem",
+      });
+    }
+
+    return res.status(201).json({
+      message: "Mensagem criada com sucesso",
+      mensagem: result,
+    });
+  } catch (err) {
+    // Captura e trata erros inesperados
+    console.error("Erro ao criar mensagem:", err);
     return res.status(500).json({
-      message: 'Erro ao criar mensagem',
+      message: "Erro interno do servidor.",
     });
   }
-
-  return res.status(201).json({
-    message: 'Mensagem criada com sucesso',
-    mensagem: result,
-  });
 }
