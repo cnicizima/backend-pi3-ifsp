@@ -1448,7 +1448,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"1990-05-15T00:00:00Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"15051995\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1479,7 +1479,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987000000\",\r\n  \"nascimento\": \"1991-05-15T00:00:00Z\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"13987000000\",\r\n  \"nascimento\": \"15051995\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1487,7 +1487,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8000/users/4",
+							"raw": "https://localhost:8000/users/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1495,7 +1495,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"4"
+								"1"
 							]
 						}
 					},
