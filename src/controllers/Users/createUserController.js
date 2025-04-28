@@ -4,7 +4,8 @@ export default async function createUserController(req, res) {
   try {
     const user = req.body;
 
-    const { success, error } = userValidator(user, { id: true });
+    // Validação dos dados do usuário
+    const { success, error } = userValidator(user);
 
     if (!success) {
       return res.status(400).json({
@@ -13,22 +14,17 @@ export default async function createUserController(req, res) {
       });
     }
 
+    // Salvar o usuário no banco
     const result = await create(user);
 
-    if (!result) {
-      return res.status(500).json({
-        message: "Erro ao criar usuário",
-      });
-    }
-
-    delete result.pass; // Para não enviar a senha no JSON de retorno
+    // Remove a senha do retorno
+    delete result.password;
 
     return res.status(201).json({
       message: "Usuário criado com sucesso",
       user: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao criar usuário:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

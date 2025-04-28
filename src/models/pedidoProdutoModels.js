@@ -59,11 +59,6 @@ export async function list() {
   return await prisma.pedidoProduto.findMany();
 }
 
-export async function create(pedidoProduto) {
-  return await prisma.pedidoProduto.create({
-    data: pedidoProduto,
-  });
-}
 
 export async function update(id, pedidoProduto) {
   return await prisma.pedidoProduto.update({
