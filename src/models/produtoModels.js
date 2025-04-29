@@ -4,11 +4,7 @@ import { z } from 'zod';
 const prisma = new PrismaClient();
 
 const produtoSchema = z.object({
-  idProduto: z.number({
-      invalid_type_error: "O id deve ser um valor numérico.",
-      required_error: "O id é obrigatório."
-  }).optional(),
-  
+
   fotoVinho: z.string({
       invalid_type_error: "A foto deve ser uma string URL.",
       required_error: "A foto é obrigatória."
@@ -97,10 +93,7 @@ export const produtoValidator = (produto, partial = null) => {
 }
 
 export async function create(produto) {
-  const validated = produtoValidator(produto);
-  if (!validated.success) {
-      throw new Error(validated.error.errors.map(e => e.message).join(', '));
-  }
+
   const result = await prisma.produto.create({
       data: validated.data
   });
@@ -108,10 +101,7 @@ export async function create(produto) {
 }
 
 export async function update(id, produto) {
-  const validated = produtoValidator(produto, true);
-  if (!validated.success) {
-      throw new Error(validated.error.errors.map(e => e.message).join(', '));
-  }
+
   const result = await prisma.produto.update({
       where: { idProduto: id },
       data: validated.data

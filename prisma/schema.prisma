@@ -17,7 +17,7 @@ model User {
   email      String   @unique @db.VarChar(255)
   sexo       String?  @db.VarChar(30)
   telefone   String   @db.VarChar(15)
-  nascimento String   @db.Char(8)
+  nascimento String   @db.Char(8) // PASSAR DO FRONT NO FORMATO DDMMYYYY
   password   String   @db.VarChar(255)
   isAdmin    Boolean  @default(false)
   avatar     String?  @db.Text // url da imagem. Se for postar foto, precisa verificar o tipo certo.

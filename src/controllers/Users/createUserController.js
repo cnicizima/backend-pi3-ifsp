@@ -5,17 +5,17 @@ export default async function createUserController(req, res) {
     const user = req.body;
 
     // Validação dos dados do usuário
-    const { success, error } = userValidator(user);
+    const validation = userValidator(user);
 
-    if (!success) {
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do usuário!",
-        errors: error.flatten().fieldErrors,
+        errors: validation.error.flatten().fieldErrors,
       });
     }
 
-    // Salvar o usuário no banco
-    const result = await create(user);
+    // Salvar o usuário no banco usando os dados validados
+    const result = await create(validation.data);
 
     // Remove a senha do retorno
     delete result.password;
@@ -28,6 +28,7 @@ export default async function createUserController(req, res) {
     console.error("Erro ao criar usuário:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",
+      error: err.message
     });
   }
 }
