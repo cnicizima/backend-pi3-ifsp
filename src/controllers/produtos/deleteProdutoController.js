@@ -1,16 +1,13 @@
-import { remove, produtoValidator } from "../../models/produtoModels.js";
+import { remove } from "../../models/produtoModels.js";
 
 export default async function deleteProdutoController(req, res) {
   try {
     const { idProduto } = req.params;
 
     // Validação do ID do produto
-    const { success, error } = produtoValidator({ idProduto: +idProduto });
-
-    if (!success) {
+    if (!idProduto || isNaN(+idProduto)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do produto!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
@@ -28,10 +25,9 @@ export default async function deleteProdutoController(req, res) {
       produto: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao remover produto:", err);
     return res.status(500).json({
-      message: "Erro interno do servidor. Tente novamente mais tarde.",
+      message: "Erro interno do servidor.",
     });
   }
 }

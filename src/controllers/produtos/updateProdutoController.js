@@ -13,17 +13,17 @@ export default async function updateProdutoController(req, res) {
     }
 
     // Validação dos dados do produto
-    const { success, error } = produtoValidator(produto);
+    const validation = produtoValidator(produto);
 
-    if (!success) {
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do produto!",
-        errors: error,
+        errors: validation.error.flatten().fieldErrors,
       });
     }
 
     // Atualização do produto
-    const result = await update(+idProduto, produto);
+    const result = await update(+idProduto, validation.data);
 
     if (!result) {
       return res.status(404).json({
@@ -36,7 +36,6 @@ export default async function updateProdutoController(req, res) {
       produto: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao atualizar produto:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",
