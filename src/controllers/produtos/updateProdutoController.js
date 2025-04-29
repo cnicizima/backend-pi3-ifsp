@@ -13,7 +13,7 @@ export default async function updateProdutoController(req, res) {
     }
 
     // Validação dos dados do produto
-    const validation = produtoValidator(produto);
+    const validation = produtoValidator(produto, true);
 
     if (!validation.success) {
       return res.status(400).json({
@@ -39,6 +39,7 @@ export default async function updateProdutoController(req, res) {
     console.error("Erro ao atualizar produto:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",
+      error: err.message,
     });
   }
 }
