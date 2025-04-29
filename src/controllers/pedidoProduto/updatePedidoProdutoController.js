@@ -1,14 +1,10 @@
-import {
-  update,
-  pedidoProdutoValidator,
-} from "../../models/pedidoProdutoModels.js";
+import { update, pedidoProdutoValidator } from "../../models/pedidoProdutoModels.js";
 
 export default async function updatePedidoProdutoController(req, res) {
   try {
     const { idPedidoProduto } = req.params;
     const pedidoProduto = req.body;
 
-    // Validação do ID do PedidoProduto
     if (!idPedidoProduto || isNaN(+idPedidoProduto)) {
       return res.status(400).json({
         message: "ID inválido. Certifique-se de que o ID é um número válido.",
@@ -16,17 +12,16 @@ export default async function updatePedidoProdutoController(req, res) {
     }
 
     // Validação dos dados do PedidoProduto
-    const { success, error } = pedidoProdutoValidator(pedidoProduto);
-
-    if (!success) {
+    const validation = pedidoProdutoValidator.safeParse(pedidoProduto);
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do PedidoProduto!",
-        errors: error,
+        errors: validation.error.format(),
       });
     }
 
     // Atualização do PedidoProduto
-    const result = await update(Number(idPedidoProduto), pedidoProduto);
+    const result = await update(+idPedidoProduto, validation.data);
 
     if (!result) {
       return res.status(404).json({
@@ -39,7 +34,6 @@ export default async function updatePedidoProdutoController(req, res) {
       pedidoProduto: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao atualizar PedidoProduto:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

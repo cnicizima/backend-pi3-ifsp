@@ -4,11 +4,14 @@ import { z } from "zod";
 const prisma = new PrismaClient();
 
 export const cupomValidator = z.object({
-  codigo: z.string().max(50, { message: "Código muito longo." }),
+  codigo: z.string()
+    .max(50, { message: "Código deve ter no máximo 50 caracteres." }),
   desconto: z.number()
     .min(0, { message: "O desconto não pode ser negativo." })
     .max(100, { message: "O desconto não pode ser maior que 100%." }),
-  pedidos: z.string().max(255, { message: "Lista de pedidos muito longa." }).optional(),
+  pedidos: z.array(z.object({
+    idPedido: z.number().optional(),
+  })).optional(), // Optional relation field
 });
 
 export async function create(cupom) {

@@ -5,7 +5,6 @@ export default async function updateAvaliacaoController(req, res) {
     const { idAvaliacao } = req.params;
     const avaliacao = req.body;
 
-    // Validação do ID da avaliação
     if (!idAvaliacao || isNaN(+idAvaliacao)) {
       return res.status(400).json({
         message: "ID inválido. Certifique-se de que o ID é um número válido.",
@@ -13,17 +12,16 @@ export default async function updateAvaliacaoController(req, res) {
     }
 
     // Validação dos dados da avaliação
-    const { success, error } = avaliacaoValidator(avaliacao);
-
-    if (!success) {
+    const validation = avaliacaoValidator.safeParse(avaliacao);
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados da avaliação!",
-        errors: error.flatten().fieldErrors,
+        errors: validation.error.format(),
       });
     }
 
     // Atualização da avaliação
-    const result = await update(+idAvaliacao, avaliacao);
+    const result = await update(+idAvaliacao, validation.data);
 
     if (!result) {
       return res.status(404).json({
@@ -36,7 +34,6 @@ export default async function updateAvaliacaoController(req, res) {
       avaliacao: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao atualizar avaliação:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

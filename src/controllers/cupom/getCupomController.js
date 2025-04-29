@@ -1,21 +1,17 @@
-import { getById, cupomValidator } from "../../models/cupomModels.js";
+import { getById } from "../../models/cupomModels.js";
 
 export default async function getCupomController(req, res) {
   try {
     const { idCupom } = req.params;
 
-    // Validação do ID do cupom
-    const { success, error } = cupomValidator({ idCupom: Number(idCupom) });
-
-    if (!success) {
+    if (!idCupom || isNaN(+idCupom)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do cupom!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
     // Busca o cupom pelo ID
-    const result = await getById(Number(idCupom));
+    const result = await getById(+idCupom);
 
     if (!result) {
       return res.status(404).json({
@@ -28,7 +24,6 @@ export default async function getCupomController(req, res) {
       cupom: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao buscar cupom:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

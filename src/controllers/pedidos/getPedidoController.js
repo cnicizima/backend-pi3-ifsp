@@ -1,16 +1,12 @@
-import { getById, pedidoValidator } from "../../models/pedidoModels.js";
+import { getById } from "../../models/pedidoModels.js";
 
 export default async function getPedidoController(req, res) {
   try {
     const { idPedido } = req.params;
 
-    // Validação do ID do pedido
-    const { success, error } = pedidoValidator({ idPedido: +idPedido });
-
-    if (!success) {
+    if (!idPedido || isNaN(+idPedido)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do pedido!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
@@ -28,7 +24,6 @@ export default async function getPedidoController(req, res) {
       pedido: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao buscar pedido:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

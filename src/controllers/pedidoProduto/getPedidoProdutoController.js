@@ -1,27 +1,17 @@
-import {
-  getById,
-  pedidoProdutoValidator,
-} from "../../models/pedidoProdutoModels.js";
+import { getById } from "../../models/pedidoProdutoModels.js";
 
 export default async function getPedidoProdutoController(req, res) {
   try {
     const { idPedidoProduto } = req.params;
 
-    // Validação do ID do PedidoProduto
-    const parsedId = parseInt(idPedidoProduto, 10); // Converte para número inteiro
-    const { success, error } = pedidoProdutoValidator({
-      idPedidoProduto: parsedId,
-    });
-
-    if (!success) {
+    if (!idPedidoProduto || isNaN(+idPedidoProduto)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do PedidoProduto!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
     // Busca o PedidoProduto pelo ID
-    const result = await getById(parsedId);
+    const result = await getById(+idPedidoProduto);
 
     if (!result) {
       return res.status(404).json({
@@ -34,7 +24,6 @@ export default async function getPedidoProdutoController(req, res) {
       pedidoProduto: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao buscar PedidoProduto:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 export const mensagemValidator = z.object({
   usuarioCpf: z.string().length(11, { message: "CPF deve ter 11 dígitos." }),
   assunto: z.string().max(255, { message: "Assunto muito longo." }),
-  conteudo: z.string(),
-  dataEnvio: z.date().default(() => new Date()),
+  conteudo: z.string({ required_error: "Conteúdo é obrigatório." }),
+  dataEnvio: z.coerce.date().default(() => new Date()), // Coerce to Date
 });
 
 export async function create(mensagem) {

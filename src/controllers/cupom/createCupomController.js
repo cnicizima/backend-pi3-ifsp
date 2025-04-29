@@ -1,5 +1,4 @@
-import { create } from "../../models/cupomModels.js";
-import { cupomValidator } from "../../models/cupomModels.js";
+import { create, cupomValidator } from "../../models/cupomModels.js";
 
 export default async function createCupomController(req, res) {
   try {
@@ -10,7 +9,7 @@ export default async function createCupomController(req, res) {
     if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do cupom!",
-        errors: validation.error.errors,
+        errors: validation.error.format(),
       });
     }
 

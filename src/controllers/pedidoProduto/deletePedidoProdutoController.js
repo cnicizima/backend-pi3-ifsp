@@ -1,21 +1,12 @@
-import {
-  remove,
-  pedidoProdutoValidator,
-} from "../../models/pedidoProdutoModels.js";
+import { remove } from "../../models/pedidoProdutoModels.js";
 
 export default async function deletePedidoProdutoController(req, res) {
   try {
     const { idPedidoProduto } = req.params;
 
-    // Validação do ID do PedidoProduto
-    const { success, error } = pedidoProdutoValidator({
-      idPedidoProduto: +idPedidoProduto,
-    });
-
-    if (!success) {
+    if (!idPedidoProduto || isNaN(+idPedidoProduto)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do PedidoProduto!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
@@ -33,7 +24,6 @@ export default async function deletePedidoProdutoController(req, res) {
       pedidoProduto: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao excluir PedidoProduto:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

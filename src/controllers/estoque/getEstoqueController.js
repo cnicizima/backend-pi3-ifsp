@@ -1,18 +1,12 @@
-import { getById, estoqueValidator } from "../../models/estoqueModels.js";
+import { getById } from "../../models/estoqueModels.js";
 
 export default async function getEstoqueController(req, res) {
   try {
     const { idEstoque } = req.params;
 
-    // Validação do ID do estoque
-    const { success, error } = estoqueValidator({
-      idEstoque: Number(idEstoque),
-    });
-
-    if (!success) {
+    if (!idEstoque || isNaN(+idEstoque)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do estoque!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 

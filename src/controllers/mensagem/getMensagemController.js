@@ -1,18 +1,12 @@
-import { getById, mensagemValidator } from "../../models/mensagemModels.js";
+import { getById } from "../../models/mensagemModels.js";
 
 export default async function getMensagemController(req, res) {
   try {
     const { idMensagem } = req.params;
 
-    // Validação do ID da mensagem
-    const { success, error } = mensagemValidator({
-      idMensagem: Number(idMensagem),
-    });
-
-    if (!success) {
+    if (!idMensagem || isNaN(+idMensagem)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID da mensagem!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
@@ -30,7 +24,6 @@ export default async function getMensagemController(req, res) {
       mensagem: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao buscar mensagem:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

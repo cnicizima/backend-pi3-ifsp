@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const pedidoProdutoValidator = z.object({
   idPedido: z.number().int({ message: "O id do pedido deve ser um número inteiro." }),
   idProduto: z.number().int({ message: "O id do produto deve ser um número inteiro." }),
-  quantidade: z.number().min(1, { message: "A quantidade deve ser maior que zero." }),
+  quantidade: z.number().int().min(1, { message: "A quantidade deve ser maior que zero." }),
   valorItem: z.number().min(0, { message: "O valor não pode ser negativo." }),
 });
 

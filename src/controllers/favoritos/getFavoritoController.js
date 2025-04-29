@@ -1,18 +1,12 @@
-import { getById, favoritoValidator } from "../../models/favoritoModels.js";
+import { getById } from "../../models/favoritoModels.js";
 
 export default async function getFavoritoController(req, res) {
   try {
     const { idFavorito } = req.params;
 
-    // Validação do ID do favorito
-    const { success, error } = favoritoValidator({
-      idFavorito: Number(idFavorito),
-    });
-
-    if (!success) {
+    if (!idFavorito || isNaN(+idFavorito)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID do favorito!",
-        errors: error,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
@@ -30,7 +24,6 @@ export default async function getFavoritoController(req, res) {
       favorito: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao buscar favorito:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",
