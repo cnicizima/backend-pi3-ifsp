@@ -4,11 +4,15 @@ import { z } from "zod";
 const prisma = new PrismaClient();
 
 export const pedidoValidator = z.object({
-  usuarioCpf: z.string().length(11, { message: "CPF deve ter 11 dígitos." }),
-  idEndereco: z.number().int({ message: "O id do endereço deve ser um número inteiro." }),
-  valorTotal: z.number().min(0, { message: "O valor total não pode ser negativo." }),
-  status: z.string().max(100, { message: "Status muito longo." }),
-  dataCompra: z.date().default(() => new Date()),
+  usuarioCpf: z.string()
+    .length(11, { message: "CPF deve ter 11 dígitos." }),
+  idEndereco: z.number()
+    .int({ message: "O id do endereço deve ser um número inteiro." }),
+  valorTotal: z.number()
+    .min(0, { message: "O valor total não pode ser negativo." }),
+  status: z.string()
+    .max(100, { message: "Status muito longo." }),
+  dataCompra: z.coerce.date().default(() => new Date()), // Coerce to Date
   idCupom: z.number().nullable().optional(),
 });
 

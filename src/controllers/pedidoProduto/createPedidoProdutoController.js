@@ -1,5 +1,4 @@
-import { create } from "../../models/pedidoProdutoModels.js";
-import { pedidoProdutoValidator } from "../../models/pedidoProdutoModels.js";
+import { create, pedidoProdutoValidator } from "../../models/pedidoProdutoModels.js";
 
 export default async function createPedidoProdutoController(req, res) {
   try {
@@ -10,7 +9,7 @@ export default async function createPedidoProdutoController(req, res) {
     if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do PedidoProduto!",
-        errors: validation.error.errors,
+        errors: validation.error.format(),
       });
     }
 

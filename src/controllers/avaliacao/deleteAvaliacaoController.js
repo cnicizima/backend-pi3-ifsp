@@ -1,23 +1,17 @@
-import { remove, avaliacaoValidator } from "../../models/avaliacaoModels.js";
+import { remove } from "../../models/avaliacaoModels.js";
 
 export default async function deleteAvaliacaoController(req, res) {
   try {
     const { idAvaliacao } = req.params;
 
-    // Validação do ID da avaliação
-    const { success, error } = avaliacaoValidator({
-      idAvaliacao: Number(idAvaliacao),
-    });
-
-    if (!success) {
+    if (!idAvaliacao || isNaN(+idAvaliacao)) {
       return res.status(400).json({
-        message: "Erro ao validar o ID da avaliação!",
-        errors: error.flatten().fieldErrors,
+        message: "ID inválido. Certifique-se de que o ID é um número válido.",
       });
     }
 
     // Remoção da avaliação
-    const result = await remove(Number(idAvaliacao));
+    const result = await remove(+idAvaliacao);
 
     if (!result) {
       return res.status(404).json({
@@ -30,7 +24,6 @@ export default async function deleteAvaliacaoController(req, res) {
       avaliacao: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao remover avaliação:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

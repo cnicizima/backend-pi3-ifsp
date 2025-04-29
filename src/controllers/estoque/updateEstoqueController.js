@@ -5,7 +5,6 @@ export default async function updateEstoqueController(req, res) {
     const { idEstoque } = req.params;
     const estoque = req.body;
 
-    // Validação do ID do estoque
     if (!idEstoque || isNaN(+idEstoque)) {
       return res.status(400).json({
         message: "ID inválido. Certifique-se de que o ID é um número válido.",
@@ -13,17 +12,17 @@ export default async function updateEstoqueController(req, res) {
     }
 
     // Validação dos dados do estoque
-    const { success, error } = estoqueValidator(estoque);
+    const validation = estoqueValidator.safeParse(estoque);
 
-    if (!success) {
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do estoque!",
-        errors: error,
+        errors: validation.error.format(),
       });
     }
 
     // Atualização do estoque
-    const result = await update(Number(idEstoque), estoque);
+    const result = await update(Number(idEstoque), validation.data);
 
     if (!result) {
       return res.status(404).json({

@@ -5,7 +5,6 @@ export default async function updateMensagemController(req, res) {
     const { idMensagem } = req.params;
     const mensagem = req.body;
 
-    // Validação do ID da mensagem
     if (!idMensagem || isNaN(+idMensagem)) {
       return res.status(400).json({
         message: "ID inválido. Certifique-se de que o ID é um número válido.",
@@ -13,17 +12,16 @@ export default async function updateMensagemController(req, res) {
     }
 
     // Validação dos dados da mensagem
-    const { success, error } = mensagemValidator(mensagem);
-
-    if (!success) {
+    const validation = mensagemValidator.safeParse(mensagem);
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados da mensagem!",
-        errors: error,
+        errors: validation.error.format(),
       });
     }
 
     // Atualização da mensagem
-    const result = await update(Number(idMensagem), mensagem);
+    const result = await update(Number(idMensagem), validation.data);
 
     if (!result) {
       return res.status(404).json({
@@ -36,7 +34,6 @@ export default async function updateMensagemController(req, res) {
       mensagem: result,
     });
   } catch (err) {
-    // Captura e trata erros inesperados
     console.error("Erro ao atualizar mensagem:", err);
     return res.status(500).json({
       message: "Erro interno do servidor.",

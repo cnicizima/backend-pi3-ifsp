@@ -8,7 +8,7 @@ export const pagamentoValidator = z.object({
   metodo: z.string().max(100, { message: "Método muito longo." }),
   status: z.string().max(100, { message: "Status muito longo." }),
   valorPago: z.number().min(0, { message: "O valor não pode ser negativo." }),
-  dataPagamento: z.date().default(() => new Date()),
+  dataPagamento: z.coerce.date().optional(), // Coerce to Date and make optional
 });
 
 export async function create(pagamento) {

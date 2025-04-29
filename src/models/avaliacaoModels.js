@@ -12,7 +12,7 @@ export const avaliacaoValidator = z.object({
     .nullable()
     .optional(),
   conteudo: z.string().nullable().optional(),
-  dataCriacao: z.date().default(() => new Date()),
+  dataCriacao: z.coerce.date().default(() => new Date()), // Coerce to Date
 });
 
 export async function create(avaliacao) {

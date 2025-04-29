@@ -1,19 +1,9 @@
-import { list, estoqueValidator } from "../../models/estoqueModels.js";
+import { list } from "../../models/estoqueModels.js";
 
 export default async function listEstoqueController(req, res) {
   try {
     // Busca todos os itens do estoque
     const result = await list();
-
-    // Valida se há itens no estoque
-    const { success, error } = estoqueValidator({ estoques: result });
-
-    if (!success) {
-      return res.status(400).json({
-        message: "Erro ao validar os itens do estoque!",
-        errors: error.flatten().fieldErrors,
-      });
-    }
 
     if (!result || result.length === 0) {
       return res.status(404).json({

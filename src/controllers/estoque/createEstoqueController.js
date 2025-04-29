@@ -5,17 +5,17 @@ export default async function createEstoqueController(req, res) {
     const estoque = req.body;
 
     // Validação dos dados do estoque
-    const { success, error } = estoqueValidator(estoque);
+    const validation = estoqueValidator.safeParse(estoque);
 
-    if (!success) {
+    if (!validation.success) {
       return res.status(400).json({
         message: "Erro ao validar os dados do estoque!",
-        errors: error,
+        errors: validation.error.format(),
       });
     }
 
     // Criação do estoque
-    const result = await create(estoque);
+    const result = await create(validation.data);
 
     if (!result) {
       return res.status(500).json({
