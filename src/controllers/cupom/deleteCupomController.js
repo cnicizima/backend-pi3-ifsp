@@ -1,6 +1,6 @@
 import { remove } from "../../models/cupomModels.js";
 
-export default async function deleteCupomController(req, res) {
+export default async function deleteCupomController(req, res, next) {
   try {
     const { idCupom } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deleteCupomController(req, res) {
       message: "Cupom removido com sucesso.",
       cupom: result,
     });
-  } catch (err) {
-    console.error("Erro ao remover cupom:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

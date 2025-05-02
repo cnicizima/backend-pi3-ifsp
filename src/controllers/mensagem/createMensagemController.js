@@ -1,6 +1,6 @@
 import { create, mensagemValidator } from "../../models/mensagemModels.js";
 
-export default async function createMensagemController(req, res) {
+export default async function createMensagemController(req, res, next) {
   try {
     const mensagem = req.body;
 
@@ -20,10 +20,7 @@ export default async function createMensagemController(req, res) {
       message: "Mensagem criada com sucesso",
       mensagem: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar mensagem:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

@@ -1,6 +1,6 @@
 import { create, pagamentoValidator } from "../../models/pagamentoModels.js";
 
-export default async function createPagamentoController(req, res) {
+export default async function createPagamentoController(req, res, next) {
   try {
     const pagamento = req.body;
 
@@ -20,10 +20,7 @@ export default async function createPagamentoController(req, res) {
       message: "Pagamento criado com sucesso",
       pagamento: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar pagamento:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

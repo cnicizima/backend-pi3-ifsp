@@ -1,6 +1,6 @@
 import { update, mensagemValidator } from "../../models/mensagemModels.js";
 
-export default async function updateMensagemController(req, res) {
+export default async function updateMensagemController(req, res, next) {
   try {
     const { idMensagem } = req.params;
     const mensagem = req.body;
@@ -33,10 +33,7 @@ export default async function updateMensagemController(req, res) {
       message: "Mensagem atualizada com sucesso.",
       mensagem: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar mensagem:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

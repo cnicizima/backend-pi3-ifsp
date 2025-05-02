@@ -1,6 +1,6 @@
 import { getById } from "../../models/favoritoModels.js";
 
-export default async function getFavoritoController(req, res) {
+export default async function getFavoritoController(req, res, next) {
   try {
     const { idFavorito } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getFavoritoController(req, res) {
       message: "Favorito encontrado com sucesso.",
       favorito: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar favorito:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

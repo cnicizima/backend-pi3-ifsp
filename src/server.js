@@ -1,4 +1,14 @@
 import express from 'express';
+import cors from 'cors';
+import rateLimit from 'express-rate-limit';
+import fs from 'fs';
+import https from 'https';
+import helmet from 'helmet';
+import { errorsHandler } from './middlewares/errorsHandler.js';
+import { logger } from './middlewares/logger.js'; // Middleware de log
+import notFoundController from '../src/notFoundController.js'; // Controller para rotas não encontradas
+
+// Importação dos roteadores
 import enderecoRouter from './routers/enderecoRouter.js';
 import estoqueRouter from './routers/estoqueRouter.js';
 import pedidoRouter from './routers/pedidoRouter.js';
@@ -7,21 +17,17 @@ import userRouter from './routers/userRouter.js';
 import pagamentoRouter from './routers/pagamentoRouter.js';
 import pedidoProdutoRouter from './routers/pedidoProdutoRouter.js';
 import favoritoRouter from './routers/favoritoRouter.js';
-import avaliacaoRouter from './routers/avaliacaoRouter.js'
+import avaliacaoRouter from './routers/avaliacaoRouter.js';
 import mensagemRouter from './routers/mensagemRouter.js';
-import cupomRouter from './routers/cupomRouter.js'
-
-
-import cors from 'cors';
-import rateLimit from 'express-rate-limit'; 
-import fs from 'fs'; 
-import https from 'https';
-import helmet from 'helmet';
-
+import cupomRouter from './routers/cupomRouter.js';
 
 const app = express();
 
+app.use(logger); // Middleware de log para todas as requisições
 
+// Middlewares globais de segurança e configuração
+app.use(helmet()); // Segurança adicional
+app.use(cors()); // Permitir requisições de diferentes origens
 
 // Configuração de Rate Limiting
 const limiter = rateLimit({
@@ -31,39 +37,29 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
-
-
-
 app.use(limiter); // Aplicar rate limiting globalmente para todas as rotas
-app.use(cors());
-app.use(express.json());
 
-
-// Usando Helmet para segurança adicional, incluindo HSTS
-app.use(helmet());
+// Middlewares de parsing
+app.use(express.json()); // Parsing de JSON
+app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded
 
 // Configuração de HSTS (HTTP Strict Transport Security)
-app.use(helmet.hsts({
-  maxAge: 31536000, // Define o período de validade do HSTS em segundos (1 ano)
-  includeSubDomains: true, // Aplica HSTS a todos os subdomínios
-  preload: true, // Solicita o site para ser incluído na lista de pré-carregamento HSTS dos navegadores
-}));
-
-// Certificados SSL (criado apenas para desenvolvimento local com o generate-cert.js, para produçao, precisa obter SSL pago)
-const sslOptions = {
-  key: fs.readFileSync('./src/certificate-ssl/key.pem'),   // Caminho para a chave privada
-  cert: fs.readFileSync('./src/certificate-ssl/cert.pem'), // Caminho para o certificado
-};
-
-
-app.get('/', ( req , res ) => {
-  return res.json({
-    message: "Bem vindo à API"
+app.use(
+  helmet.hsts({
+    maxAge: 31536000, // Define o período de validade do HSTS em segundos (1 ano)
+    includeSubDomains: true, // Aplica HSTS a todos os subdomínios
+    preload: true, // Solicita o site para ser incluído na lista de pré-carregamento HSTS dos navegadores
   })
+);
+
+// Rota inicial
+app.get('/', (req, res) => {
+  return res.json({
+    message: 'Bem vindo à API',
+  });
 });
 
-
-// paths dos roteadores:
+// Paths dos roteadores
 app.use('/users', userRouter);
 app.use('/produtos', produtoRouter);
 app.use('/enderecos', enderecoRouter);
@@ -73,10 +69,18 @@ app.use('/pagamentos', pagamentoRouter);
 app.use('/pedidoProduto', pedidoProdutoRouter);
 app.use('/favoritos', favoritoRouter);
 app.use('/avaliacao', avaliacaoRouter);
-app.use('/mensagem', mensagemRouter)
-app.use('/cupom', cupomRouter)
+app.use('/mensagem', mensagemRouter);
+app.use('/cupom', cupomRouter);
 
+app.use('*', notFoundController)// //middleware para tratar rotas não encontradas. O '*' significa que ele vai pegar todas as rotas que não foram tratadas antes.
 
+app.use(errorsHandler); // Middleware de tratamento de erros
+
+// Certificados SSL (criado apenas para desenvolvimento local com o generate-cert.js, para produção, precisa obter SSL pago)
+const sslOptions = {
+  key: fs.readFileSync('./src/certificate-ssl/key.pem'), // Caminho para a chave privada
+  cert: fs.readFileSync('./src/certificate-ssl/cert.pem'), // Caminho para o certificado
+};
 
 // Configuração do servidor HTTPS
 https.createServer(sslOptions, app).listen(8000, () => {

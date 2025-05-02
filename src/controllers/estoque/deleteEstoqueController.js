@@ -1,6 +1,6 @@
 import { remove } from "../../models/estoqueModels.js";
 
-export default async function deleteEstoqueController(req, res) {
+export default async function deleteEstoqueController(req, res, next) {
   try {
     const { idEstoque } = req.params;
 
@@ -23,11 +23,7 @@ export default async function deleteEstoqueController(req, res) {
       message: "Estoque removido com sucesso",
       estoque: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao remover estoque:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

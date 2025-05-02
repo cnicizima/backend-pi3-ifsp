@@ -1,6 +1,6 @@
 import { remove } from "../../models/favoritoModels.js";
 
-export default async function deleteFavoritoController(req, res) {
+export default async function deleteFavoritoController(req, res, next) {
   try {
     const { idFavorito } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deleteFavoritoController(req, res) {
       message: "Favorito removido com sucesso.",
       favorito: result,
     });
-  } catch (err) {
-    console.error("Erro ao remover favorito:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

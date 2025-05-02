@@ -1,6 +1,6 @@
 import { remove } from "../../models/pagamentoModels.js";
 
-export default async function deletePagamentoController(req, res) {
+export default async function deletePagamentoController(req, res, next) {
   try {
     const { idPagamento } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deletePagamentoController(req, res) {
       message: "Pagamento removido com sucesso.",
       pagamento: result,
     });
-  } catch (err) {
-    console.error("Erro ao deletar pagamento:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

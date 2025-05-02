@@ -1,6 +1,6 @@
 import { create, userValidator } from "../../models/userModels.js";
 
-export default async function createUserController(req, res) {
+export default async function createUserController(req, res, next) {
   try {
     const user = req.body;
 
@@ -24,11 +24,15 @@ export default async function createUserController(req, res) {
       message: "Usuário criado com sucesso",
       user: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar usuário:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-      error: err.message
-    });
+  } catch (error) {
+    if (error?.code === "P2002" && error?.meta?.target === "user_email_key") {
+      return res.status(400).json({
+        message: "Erro ao criar usuário",
+        errors: {
+          email: ["email já cadastrado"]
+        }
+      })
+    }
+    next(error)
   }
 }

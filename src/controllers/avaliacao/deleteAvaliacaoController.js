@@ -1,6 +1,6 @@
 import { remove } from "../../models/avaliacaoModels.js";
 
-export default async function deleteAvaliacaoController(req, res) {
+export default async function deleteAvaliacaoController(req, res, next) {
   try {
     const { idAvaliacao } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deleteAvaliacaoController(req, res) {
       message: "Avaliação removida com sucesso.",
       avaliacao: result,
     });
-  } catch (err) {
-    console.error("Erro ao remover avaliação:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

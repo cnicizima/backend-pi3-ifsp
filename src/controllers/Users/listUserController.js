@@ -1,6 +1,6 @@
 import { list } from "../../models/userModels.js";
 
-export default async function listUserController(req, res) {
+export default async function listUserController(req, res, next) {
   try {
     // Busca todos os usuários
     const result = await list();
@@ -15,12 +15,7 @@ export default async function listUserController(req, res) {
       message: "Usuários listados com sucesso.",
       usuarios: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao listar usuários:", err);
-    return res.status(500).json({
-      message: "Erro ao listar usuários.",
-      error: err.message,
-    });
+  }  catch (error) {
+    next(error)
   }
 }

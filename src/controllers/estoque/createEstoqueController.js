@@ -1,6 +1,6 @@
 import { create, estoqueValidator } from "../../models/estoqueModels.js";
 
-export default async function createEstoqueController(req, res) {
+export default async function createEstoqueController(req, res, next) {
   try {
     const estoque = req.body;
 
@@ -27,11 +27,7 @@ export default async function createEstoqueController(req, res) {
       message: "Estoque criado com sucesso",
       estoque: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao criar estoque:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

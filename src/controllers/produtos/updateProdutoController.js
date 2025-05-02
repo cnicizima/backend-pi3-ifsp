@@ -1,6 +1,6 @@
 import { update, produtoValidator } from "../../models/produtoModels.js";
 
-export default async function updateProdutoController(req, res) {
+export default async function updateProdutoController(req, res, next) {
   try {
     const { idProduto } = req.params;
     const produto = req.body;
@@ -35,11 +35,7 @@ export default async function updateProdutoController(req, res) {
       message: "Produto atualizado com sucesso.",
       produto: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar produto:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-      error: err.message,
-    });
+  }  catch (error) {
+    next(error)
   }
 }

@@ -1,6 +1,6 @@
 import { getById } from "../../models/pedidoModels.js";
 
-export default async function getPedidoController(req, res) {
+export default async function getPedidoController(req, res, next) {
   try {
     const { idPedido } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getPedidoController(req, res) {
       message: "Pedido encontrado com sucesso.",
       pedido: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar pedido:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

@@ -1,6 +1,6 @@
 import { list } from "../../models/favoritoModels.js";
 
-export default async function listFavoritoController(req, res) {
+export default async function listFavoritoController(req, res, next) {
   try {
     // Busca todos os favoritos
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listFavoritoController(req, res) {
       message: "Favoritos listados com sucesso.",
       favoritos: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar favoritos:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

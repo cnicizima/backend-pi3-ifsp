@@ -1,6 +1,6 @@
 import { list } from "../../models/estoqueModels.js";
 
-export default async function listEstoqueController(req, res) {
+export default async function listEstoqueController(req, res, next) {
   try {
     // Busca todos os itens do estoque
     const result = await list();
@@ -15,11 +15,7 @@ export default async function listEstoqueController(req, res) {
       message: "Itens do estoque listados com sucesso.",
       estoques: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao listar itens do estoque:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

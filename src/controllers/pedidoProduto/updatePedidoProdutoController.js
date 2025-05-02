@@ -1,6 +1,6 @@
 import { update, pedidoProdutoValidator } from "../../models/pedidoProdutoModels.js";
 
-export default async function updatePedidoProdutoController(req, res) {
+export default async function updatePedidoProdutoController(req, res, next) {
   try {
     const { idPedidoProduto } = req.params;
     const pedidoProduto = req.body;
@@ -33,10 +33,7 @@ export default async function updatePedidoProdutoController(req, res) {
       message: "PedidoProduto atualizado com sucesso.",
       pedidoProduto: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar PedidoProduto:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

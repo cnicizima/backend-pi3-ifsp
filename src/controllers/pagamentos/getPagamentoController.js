@@ -1,6 +1,6 @@
 import { getById } from "../../models/pagamentoModels.js";
 
-export default async function getPagamentoController(req, res) {
+export default async function getPagamentoController(req, res, next) {
   try {
     const { idPagamento } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getPagamentoController(req, res) {
       message: "Pagamento encontrado com sucesso.",
       pagamento: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar pagamento:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

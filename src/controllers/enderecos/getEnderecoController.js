@@ -1,7 +1,7 @@
 import { getById } from "../../models/enderecoModels.js";
 import { z } from "zod";
 
-export default async function getEnderecoController(req, res) {
+export default async function getEnderecoController(req, res, next) {
   try {
     const { idEndereco } = req.params;
 
@@ -29,11 +29,7 @@ export default async function getEnderecoController(req, res) {
       message: "Endereço encontrado com sucesso",
       endereco: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao buscar endereço:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

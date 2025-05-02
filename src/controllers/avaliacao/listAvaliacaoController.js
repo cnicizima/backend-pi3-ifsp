@@ -1,6 +1,6 @@
 import { list } from "../../models/avaliacaoModels.js";
 
-export default async function listAvaliacaoController(req, res) {
+export default async function listAvaliacaoController(req, res, next) {
   try {
     // Busca todas as avaliações
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listAvaliacaoController(req, res) {
       message: "Avaliações listadas com sucesso.",
       avaliacoes: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar avaliações:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

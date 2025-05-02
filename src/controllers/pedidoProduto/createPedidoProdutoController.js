@@ -1,6 +1,6 @@
 import { create, pedidoProdutoValidator } from "../../models/pedidoProdutoModels.js";
 
-export default async function createPedidoProdutoController(req, res) {
+export default async function createPedidoProdutoController(req, res, next) {
   try {
     const pedidoProduto = req.body;
 
@@ -20,10 +20,7 @@ export default async function createPedidoProdutoController(req, res) {
       message: "PedidoProduto criado com sucesso",
       pedidoProduto: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar PedidoProduto:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

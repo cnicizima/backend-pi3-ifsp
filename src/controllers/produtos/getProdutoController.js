@@ -1,6 +1,6 @@
 import { getById } from "../../models/produtoModels.js";
 
-export default async function getProdutoController(req, res) {
+export default async function getProdutoController(req, res, next) {
   try {
     const { idProduto } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getProdutoController(req, res) {
     return res.status(200).json({
       produto: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar produto:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error)
   }
 }

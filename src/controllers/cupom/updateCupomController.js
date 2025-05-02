@@ -1,6 +1,6 @@
 import { update, cupomValidator } from "../../models/cupomModels.js";
 
-export default async function updateCupomController(req, res) {
+export default async function updateCupomController(req, res, next) {
   try {
     const { idCupom } = req.params;
     const cupom = req.body;
@@ -33,10 +33,7 @@ export default async function updateCupomController(req, res) {
       message: "Cupom atualizado com sucesso.",
       cupom: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar cupom:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

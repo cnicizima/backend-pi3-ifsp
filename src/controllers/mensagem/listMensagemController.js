@@ -1,6 +1,6 @@
 import { list } from "../../models/mensagemModels.js";
 
-export default async function listMensagemController(req, res) {
+export default async function listMensagemController(req, res, next) {
   try {
     // Busca todas as mensagens
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listMensagemController(req, res) {
       message: "Mensagens listadas com sucesso.",
       mensagens: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar mensagens:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

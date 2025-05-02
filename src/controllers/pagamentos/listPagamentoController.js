@@ -1,6 +1,6 @@
 import { list } from "../../models/pagamentoModels.js";
 
-export default async function listPagamentoController(req, res) {
+export default async function listPagamentoController(req, res, next) {
   try {
     // Busca todos os pagamentos
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listPagamentoController(req, res) {
       message: "Pagamentos listados com sucesso.",
       pagamentos: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar pagamentos:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }
