@@ -1,6 +1,6 @@
 import { remove } from "../../models/pedidoModels.js";
 
-export default async function deletePedidoController(req, res) {
+export default async function deletePedidoController(req, res, next) {
   try {
     const { idPedido } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deletePedidoController(req, res) {
       message: "Pedido removido com sucesso.",
       pedido: result,
     });
-  } catch (err) {
-    console.error("Erro ao deletar pedido:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

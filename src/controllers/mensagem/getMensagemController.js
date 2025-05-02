@@ -1,6 +1,6 @@
 import { getById } from "../../models/mensagemModels.js";
 
-export default async function getMensagemController(req, res) {
+export default async function getMensagemController(req, res, next) {
   try {
     const { idMensagem } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getMensagemController(req, res) {
       message: "Mensagem encontrada com sucesso.",
       mensagem: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar mensagem:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

@@ -1,6 +1,6 @@
 import { create, favoritoValidator } from "../../models/favoritoModels.js";
 
-export default async function createFavoritoController(req, res) {
+export default async function createFavoritoController(req, res, next) {
   try {
     const favorito = req.body;
 
@@ -20,10 +20,7 @@ export default async function createFavoritoController(req, res) {
       message: "Favorito adicionado com sucesso",
       favorito: result,
     });
-  } catch (err) {
-    console.error("Erro ao adicionar favorito:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

@@ -1,6 +1,6 @@
 import { remove } from "../../models/userModels.js";
 
-export default async function deleteUserController(req, res) {
+export default async function deleteUserController(req, res, next) {
   try {
     const { id } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deleteUserController(req, res) {
     return res.status(200).json({
       message: "Usuário removido com sucesso.",
     });
-  } catch (err) {
-    console.error("Erro ao deletar usuário:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor. Tente novamente mais tarde.",
-    });
+  }  catch (error) {
+    next(error)
   }
 }

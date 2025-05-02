@@ -1,6 +1,6 @@
 import { getById } from "../../models/estoqueModels.js";
 
-export default async function getEstoqueController(req, res) {
+export default async function getEstoqueController(req, res, next) {
   try {
     const { idEstoque } = req.params;
 
@@ -23,11 +23,7 @@ export default async function getEstoqueController(req, res) {
       message: "Estoque encontrado com sucesso.",
       estoque: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao buscar estoque:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

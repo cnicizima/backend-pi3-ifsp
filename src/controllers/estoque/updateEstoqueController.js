@@ -1,6 +1,6 @@
 import { update, estoqueValidator } from "../../models/estoqueModels.js";
 
-export default async function updateEstoqueController(req, res) {
+export default async function updateEstoqueController(req, res, next) {
   try {
     const { idEstoque } = req.params;
     const estoque = req.body;
@@ -34,11 +34,7 @@ export default async function updateEstoqueController(req, res) {
       message: "Estoque atualizado com sucesso.",
       estoque: result,
     });
-  } catch (err) {
-    // Captura e trata erros inesperados
-    console.error("Erro ao atualizar estoque:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

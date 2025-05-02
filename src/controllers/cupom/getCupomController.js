@@ -1,6 +1,6 @@
 import { getById } from "../../models/cupomModels.js";
 
-export default async function getCupomController(req, res) {
+export default async function getCupomController(req, res, next) {
   try {
     const { idCupom } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getCupomController(req, res) {
       message: "Cupom encontrado com sucesso.",
       cupom: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar cupom:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

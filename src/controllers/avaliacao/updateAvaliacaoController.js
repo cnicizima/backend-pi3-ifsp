@@ -1,6 +1,6 @@
 import { update, avaliacaoValidator } from "../../models/avaliacaoModels.js";
 
-export default async function updateAvaliacaoController(req, res) {
+export default async function updateAvaliacaoController(req, res, next) {
   try {
     const { idAvaliacao } = req.params;
     const avaliacao = req.body;
@@ -33,10 +33,7 @@ export default async function updateAvaliacaoController(req, res) {
       message: "Avaliação atualizada com sucesso.",
       avaliacao: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar avaliação:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

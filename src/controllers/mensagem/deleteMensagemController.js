@@ -1,6 +1,6 @@
 import { remove } from "../../models/mensagemModels.js";
 
-export default async function deleteMensagemController(req, res) {
+export default async function deleteMensagemController(req, res, next) {
   try {
     const { idMensagem } = req.params;
 
@@ -23,10 +23,7 @@ export default async function deleteMensagemController(req, res) {
       message: "Mensagem removida com sucesso.",
       mensagem: result,
     });
-  } catch (err) {
-    console.error("Erro ao remover mensagem:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

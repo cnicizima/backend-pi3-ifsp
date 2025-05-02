@@ -1,7 +1,7 @@
 import { update } from "../../models/enderecoModels.js";
 import { enderecoValidator } from "../../models/enderecoModels.js";
 
-export default async function updateEnderecoController(req, res) {
+export default async function updateEnderecoController(req, res, next) {
   try {
     const { idEndereco } = req.params;
     const endereco = req.body;
@@ -32,10 +32,7 @@ export default async function updateEnderecoController(req, res) {
       message: "Endereço atualizado com sucesso.",
       endereco: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar endereço:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

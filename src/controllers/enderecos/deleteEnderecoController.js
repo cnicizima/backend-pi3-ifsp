@@ -1,7 +1,7 @@
 import { remove } from "../../models/enderecoModels.js";
 import { z } from "zod";
 
-export default async function deleteEnderecoController(req, res) {
+export default async function deleteEnderecoController(req, res, next) {
   try {
     const { idEndereco } = req.params;
 
@@ -29,10 +29,7 @@ export default async function deleteEnderecoController(req, res) {
       message: "Endereço removido com sucesso.",
       endereco: result,
     });
-  } catch (err) {
-    console.error("Erro ao remover endereço:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  }catch (error) {
+    next(error);
   }
 }

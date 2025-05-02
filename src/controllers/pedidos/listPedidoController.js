@@ -1,6 +1,6 @@
 import { list } from "../../models/pedidoModels.js";
 
-export default async function listPedidoController(req, res) {
+export default async function listPedidoController(req, res, next) {
   try {
     // Busca todos os pedidos
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listPedidoController(req, res) {
       message: "Pedidos listados com sucesso.",
       pedidos: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar pedidos:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

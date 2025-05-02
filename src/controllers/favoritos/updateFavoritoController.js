@@ -1,6 +1,6 @@
 import { update, favoritoValidator } from "../../models/favoritoModels.js";
 
-export default async function updateFavoritoController(req, res) {
+export default async function updateFavoritoController(req, res, next) {
   try {
     const { idFavorito } = req.params;
     const favorito = req.body;
@@ -33,10 +33,7 @@ export default async function updateFavoritoController(req, res) {
       message: "Favorito atualizado com sucesso.",
       favorito: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar favorito:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

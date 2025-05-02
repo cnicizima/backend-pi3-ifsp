@@ -1,6 +1,6 @@
 import { create, cupomValidator } from "../../models/cupomModels.js";
 
-export default async function createCupomController(req, res) {
+export default async function createCupomController(req, res, next) {
   try {
     const cupom = req.body;
 
@@ -20,10 +20,7 @@ export default async function createCupomController(req, res) {
       message: "Cupom criado com sucesso",
       cupom: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar cupom:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

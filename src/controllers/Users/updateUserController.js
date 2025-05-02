@@ -1,6 +1,6 @@
 import { update, userValidator } from "../../models/userModels.js";
 
-export default async function updateUserController(req, res) {
+export default async function updateUserController(req, res, next) {
   try {
     const { id } = req.params;
     const user = req.body;
@@ -41,11 +41,7 @@ export default async function updateUserController(req, res) {
       message: "Usuário atualizado com sucesso.",
       user: result,
     });
-  } catch (err) {
-    // Tratamento de erros inesperados
-    console.error("Erro ao atualizar usuário:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  }  catch (error) {
+    next(error)
   }
 }

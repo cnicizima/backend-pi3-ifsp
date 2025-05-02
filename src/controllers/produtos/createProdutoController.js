@@ -1,6 +1,6 @@
 import { create, produtoValidator } from "../../models/produtoModels.js";
 
-export default async function createProdutoController(req, res) {
+export default async function createProdutoController(req, res, next) {
   try {
     const produto = req.body;
 
@@ -21,11 +21,7 @@ export default async function createProdutoController(req, res) {
       message: "Produto criado com sucesso",
       produto: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar produto:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-      error: err.message,
-    });
+  }  catch (error) {
+    next(error)
   }
 }

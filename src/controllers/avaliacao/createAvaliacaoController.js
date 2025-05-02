@@ -1,6 +1,6 @@
 import { create, avaliacaoValidator } from "../../models/avaliacaoModels.js";
 
-export default async function createAvaliacaoController(req, res) {
+export default async function createAvaliacaoController(req, res, next) {
   try {
     const avaliacao = req.body;
 
@@ -20,10 +20,7 @@ export default async function createAvaliacaoController(req, res) {
       message: "Avaliação criada com sucesso",
       avaliacao: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar avaliação:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

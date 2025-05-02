@@ -1,7 +1,7 @@
 import { create } from "../../models/enderecoModels.js";
 import { enderecoValidator } from "../../models/enderecoModels.js";
 
-export default async function createEnderecoController(req, res) {
+export default async function createEnderecoController(req, res, next) {
   try {
     const endereco = req.body;
 
@@ -19,10 +19,7 @@ export default async function createEnderecoController(req, res) {
       message: "Endereço criado com sucesso",
       endereco: result,
     });
-  } catch (err) {
-    console.error("Erro ao criar endereço:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

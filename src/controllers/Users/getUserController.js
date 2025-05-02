@@ -1,6 +1,6 @@
 import { getById, userValidator } from "../../models/userModels.js";
 
-export default async function getUserController(req, res) {
+export default async function getUserController(req, res, next) {
   try {
     const { id } = req.params;
 
@@ -37,11 +37,7 @@ export default async function getUserController(req, res) {
       message: "Usuário encontrado com sucesso.",
       user: result,
     });
-  } catch (err) {
-    // Tratamento de erros inesperados
-    console.error("Erro ao buscar usuário:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  }  catch (error) {
+    next(error)
   }
 }

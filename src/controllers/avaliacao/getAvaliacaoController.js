@@ -1,6 +1,6 @@
 import { getById } from "../../models/avaliacaoModels.js";
 
-export default async function getAvaliacaoController(req, res) {
+export default async function getAvaliacaoController(req, res, next) {
   try {
     const { idAvaliacao } = req.params;
 
@@ -23,10 +23,7 @@ export default async function getAvaliacaoController(req, res) {
       message: "Avaliação encontrada com sucesso.",
       avaliacao: result,
     });
-  } catch (err) {
-    console.error("Erro ao buscar avaliação:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }

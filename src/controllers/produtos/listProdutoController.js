@@ -1,6 +1,6 @@
 import { list } from "../../models/produtoModels.js";
 
-export default async function listProdutoController(req, res) {
+export default async function listProdutoController(req, res, next) {
   try {
     // Busca todos os produtos
     const result = await list();
@@ -15,10 +15,7 @@ export default async function listProdutoController(req, res) {
       message: "Produtos listados com sucesso.",
       produtos: result,
     });
-  } catch (err) {
-    console.error("Erro ao listar produtos:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  }  catch (error) {
+    next(error)
   }
 }

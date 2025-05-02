@@ -1,6 +1,6 @@
 import { update, pagamentoValidator } from "../../models/pagamentoModels.js";
 
-export default async function updatePagamentoController(req, res) {
+export default async function updatePagamentoController(req, res, next) {
   try {
     const { idPagamento } = req.params;
     const pagamento = req.body;
@@ -33,10 +33,7 @@ export default async function updatePagamentoController(req, res) {
       message: "Pagamento atualizado com sucesso.",
       pagamento: result,
     });
-  } catch (err) {
-    console.error("Erro ao atualizar pagamento:", err);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+  } catch (error) {
+    next(error);
   }
 }
