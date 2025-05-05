@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import rateLimit from 'express-rate-limit';
 import fs from 'fs';
 import https from 'https';
 import helmet from 'helmet';
 import { errorsHandler } from './middlewares/errorsHandler.js';
 import { logger } from './middlewares/logger.js'; // Middleware de log
+import limiter  from './middlewares/limiter.js';
+import hstsMiddleware  from './middlewares/hstsMiddleware.js'; // Middleware de HSTS
 import notFoundController from '../src/notFoundController.js'; // Controller para rotas não encontradas
 
 // Importação dos roteadores
@@ -29,14 +30,7 @@ app.use(logger); // Middleware de log para todas as requisições
 app.use(helmet()); // Segurança adicional
 app.use(cors()); // Permitir requisições de diferentes origens
 
-// Configuração de Rate Limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // Limita a 100 requisições por IP no intervalo de 15 minutos
-  message: 'Too many requests, please try again later.', // Mensagem caso o limite seja atingido
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+
 app.use(limiter); // Aplicar rate limiting globalmente para todas as rotas
 
 // Middlewares de parsing
@@ -44,13 +38,7 @@ app.use(express.json()); // Parsing de JSON
 app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded
 
 // Configuração de HSTS (HTTP Strict Transport Security)
-app.use(
-  helmet.hsts({
-    maxAge: 31536000, // Define o período de validade do HSTS em segundos (1 ano)
-    includeSubDomains: true, // Aplica HSTS a todos os subdomínios
-    preload: true, // Solicita o site para ser incluído na lista de pré-carregamento HSTS dos navegadores
-  })
-);
+app.use(hstsMiddleware); // HSTS para segurança adicional
 
 // Rota inicial
 app.get('/', (req, res) => {
@@ -75,6 +63,7 @@ app.use('/cupom', cupomRouter);
 app.use('*', notFoundController)// //middleware para tratar rotas não encontradas. O '*' significa que ele vai pegar todas as rotas que não foram tratadas antes.
 
 app.use(errorsHandler); // Middleware de tratamento de erros
+
 
 // Certificados SSL (criado apenas para desenvolvimento local com o generate-cert.js, para produção, precisa obter SSL pago)
 const sslOptions = {
