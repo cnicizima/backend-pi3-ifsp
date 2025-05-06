@@ -59,7 +59,7 @@ export async function getById(id) {
 }
 
 
-export async function getByemail(email) {
+export async function getByEmail(email) {
   const result = await prisma.user.findUnique({
     where: {
       email
