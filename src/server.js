@@ -21,6 +21,7 @@ import favoritoRouter from './routers/favoritoRouter.js';
 import avaliacaoRouter from './routers/avaliacaoRouter.js';
 import mensagemRouter from './routers/mensagemRouter.js';
 import cupomRouter from './routers/cupomRouter.js';
+import authRouter from './routers/authRouter.js';
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/favoritos', favoritoRouter);
 app.use('/avaliacao', avaliacaoRouter);
 app.use('/mensagem', mensagemRouter);
 app.use('/cupom', cupomRouter);
+app.use('/auth', authRouter);
 
 app.use('*', notFoundController)// //middleware para tratar rotas não encontradas. O '*' significa que ele vai pegar todas as rotas que não foram tratadas antes.
 
