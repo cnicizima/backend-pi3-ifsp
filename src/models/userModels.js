@@ -58,6 +58,17 @@ export async function getById(id) {
   return result;
 }
 
+
+export async function getByemail(email) {
+  const result = await prisma.user.findUnique({
+    where: {
+      email
+    },
+  });
+  return result;
+}
+
+
 export async function list() {
   const result = await prisma.user.findMany();
   return result;

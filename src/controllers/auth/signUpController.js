@@ -1,6 +1,7 @@
 import { create, userValidator } from "../../models/userModels.js";
+import bcrypt from 'bcrypt';
 
-export default async function createUserController(req, res, next) {
+export default async function signUpController(req, res, next) {
   try {
     const user = req.body;
 
@@ -13,6 +14,8 @@ export default async function createUserController(req, res, next) {
         errors: validation.error.flatten().fieldErrors,
       });
     }
+
+    validation.data.password = bcrypt.hashSync(validation.data.password, 10);
 
     // Salvar o usuário no banco usando os dados validados
     const result = await create(validation.data);

@@ -46,3 +46,5 @@ TRUNCATE TABLE Endereco;
 TRUNCATE TABLE Cupom;
 TRUNCATE TABLE User;
 SET FOREIGN_KEY_CHECKS = 1;
+
+opcionalmente pode rodar 'npx prisma studio' e apagar manualmente no browser os dados. 
