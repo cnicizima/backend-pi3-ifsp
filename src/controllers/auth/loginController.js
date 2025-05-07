@@ -1,5 +1,6 @@
 import { getByemail, userValidator } from "../../models/userModels.js";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 export default async function loginController(req, res, next) {
   try {
@@ -33,15 +34,27 @@ export default async function loginController(req, res, next) {
       });
     }
 
-    // Retornar sucesso
-    return res.status(200).json({
-      message: "Login realizado com sucesso"
-    });
-    
+    const accessToken = jwt.sign({ email: result.email, avatar: result.avatar, isAdmin: result.isAdmin }, process.env.JWT_SECRET, { expiresIn: '3h'});
+
+    const refreshToken = jwt.sign({ email: result.email, avatar: result.avatar, isAdmin: result.isAdmin }, process.env.JWT_SECRET, { expiresIn: '3d'});
+
+
+    res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: "None", secure: true, maxAge: 3 * 24 * 60 * 60 * 1000 })
+
+
+    return res.status(201).json({
+      message: 'Login realizado com sucesso',
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+      user: {
+        id: result.id,
+        nome: result.nome,
+        email: result.email,
+        avatar: result.avatar
+      }
+    })
+
   } catch (error) {
-    console.error("Erro ao realizar login:", error);
-    return res.status(500).json({
-      message: "Erro interno do servidor.",
-    });
+    next(error)
   }
 }
