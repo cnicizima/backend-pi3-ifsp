@@ -13,4 +13,11 @@ router.post('/', createPagamentoController);
 router.put('/:idPagamento', updatePagamentoController);
 router.delete('/:idPagamento', deletePagamentoController);
 
+// Catch-all para rotas não implementadas
+router.all('*', (req, res) => {
+    res.status(501).json({
+      message: 'Not implemented',
+    });
+  });
+  
 export default router;
