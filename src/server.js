@@ -36,7 +36,7 @@ app.use(limiter); // Aplicar rate limiting globalmente para todas as rotas
 
 // Middlewares de parsing
 app.use(express.json()); // Parsing de JSON
-app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded
+app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded - caso receba dados urlcoded
 
 // Configuração de HSTS (HTTP Strict Transport Security)
 app.use(hstsMiddleware); // HSTS para segurança adicional
