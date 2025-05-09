@@ -4,6 +4,7 @@ import listEnderecoController from '../controllers/enderecos/listEnderecoControl
 import getEnderecoController from '../controllers/enderecos/getEnderecoController.js';
 import deleteEnderecoController from '../controllers/enderecos/deleteEnderecoController.js';
 import updateEnderecoController from '../controllers/enderecos/updateEnderecoController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
@@ -14,10 +15,6 @@ router.delete('/:idEndereco', deleteEnderecoController);
 router.put('/:idEndereco', updateEnderecoController);
 
 // Catch-all para rotas não implementadas
-router.all('*', (req, res) => {
-    res.status(501).json({
-      message: 'Not implemented',
-    });
-  });
+router.all('*', notFoundController);
   
 export default router;

@@ -4,6 +4,7 @@ import listFavoritoController from '../controllers/favoritos/listFavoritoControl
 import getFavoritoController from '../controllers/favoritos/getFavoritoController.js';
 import updateFavoritoController from '../controllers/favoritos/updateFavoritoController.js';
 import deleteFavoritoController from '../controllers/favoritos/deleteFavoritoController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
@@ -14,10 +15,6 @@ router.put('/:idFavorito', updateFavoritoController);
 router.delete('/:idFavorito', deleteFavoritoController);
 
 // Catch-all para rotas não implementadas
-router.all('*', (req, res) => {
-    res.status(501).json({
-      message: 'Not implemented',
-    });
-  });
+router.all('*', notFoundController);
   
 export default router;

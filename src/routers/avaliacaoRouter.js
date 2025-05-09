@@ -4,6 +4,7 @@ import listAvaliacaoController from '../controllers/avaliacao/listAvaliacaoContr
 import getAvaliacaoController from '../controllers/avaliacao/getAvaliacaoController.js';
 import updateAvaliacaoController from '../controllers/avaliacao/updateAvaliacaoController.js';
 import deleteAvaliacaoController from '../controllers/avaliacao/deleteAvaliacaoController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
@@ -14,10 +15,6 @@ router.put('/:idAvaliacao', updateAvaliacaoController);
 router.delete('/:idAvaliacao', deleteAvaliacaoController);
 
 // Catch-all para rotas não implementadas
-router.all('*', (req, res) => {
-    res.status(501).json({
-      message: 'Not implemented',
-    });
-  });
+router.all('*', notFoundController);
   
 export default router;
