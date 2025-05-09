@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "051c92c9-9e78-4f90-9c57-8e33bf63292c",
+		"_postman_id": "23313daa-f8df-4454-88e8-42a57024068a",
 		"name": "api-backend-pi3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43631102",
-		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-051c92c9-9e78-4f90-9c57-8e33bf63292c?action=share&source=collection_link&creator=43631102"
+		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-23313daa-f8df-4454-88e8-42a57024068a?action=share&source=collection_link&creator=43631102"
 	},
 	"item": [
 		{
@@ -1460,14 +1460,15 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8000/users",
+							"raw": "https://localhost:8000/auth/signup",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users"
+								"auth",
+								"signup"
 							]
 						}
 					},
