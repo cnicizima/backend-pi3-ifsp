@@ -14,6 +14,12 @@ router.post('/', createProdutoController);
 router.put('/:idProduto', updateProdutoController);
 router.delete('/:idProduto', deleteProdutoController);
 
-
+// Catch-all para rotas não implementadas
+router.all('*', (req, res) => {
+    res.status(501).json({
+      message: 'Not implemented',
+    });
+  });
+  
 
 export default router;

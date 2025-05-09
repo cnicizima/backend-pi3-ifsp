@@ -13,4 +13,11 @@ router.post('/', createEstoqueController);
 router.put('/:idEstoque', updateEstoqueController);
 router.delete('/:idEstoque', deleteEstoqueController);
 
+// Catch-all para rotas não implementadas
+router.all('*', (req, res) => {
+    res.status(501).json({
+      message: 'Not implemented',
+    });
+  });
+  
 export default router;

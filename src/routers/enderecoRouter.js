@@ -13,5 +13,11 @@ router.get('/:idEndereco', getEnderecoController);
 router.delete('/:idEndereco', deleteEnderecoController);
 router.put('/:idEndereco', updateEnderecoController);
 
-
+// Catch-all para rotas não implementadas
+router.all('*', (req, res) => {
+    res.status(501).json({
+      message: 'Not implemented',
+    });
+  });
+  
 export default router;

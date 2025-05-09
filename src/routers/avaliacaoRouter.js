@@ -13,4 +13,11 @@ router.post('/', createAvaliacaoController);
 router.put('/:idAvaliacao', updateAvaliacaoController);
 router.delete('/:idAvaliacao', deleteAvaliacaoController);
 
+// Catch-all para rotas não implementadas
+router.all('*', (req, res) => {
+    res.status(501).json({
+      message: 'Not implemented',
+    });
+  });
+  
 export default router;
