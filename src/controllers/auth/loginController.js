@@ -1,4 +1,4 @@
-import { getByemail, userValidator } from "../../models/userModels.js";
+import { getByEmail, userValidator } from "../../models/userModels.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
@@ -17,7 +17,7 @@ export default async function loginController(req, res, next) {
     }
 
     // Buscar o usuário pelo email
-    const result = await getByemail(validation.data.email);
+    const result = await getByEmail(validation.data.email);
 
     if (!result) {
       return res.status(400).json({

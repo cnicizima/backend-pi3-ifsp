@@ -3,7 +3,8 @@ import listProdutoController from '../controllers/produtos/listProdutoController
 import createProdutoController from '../controllers/produtos/createProdutoController.js';
 import getProdutoController from '../controllers/produtos/getProdutoController.js';
 import deleteProdutoController from '../controllers/produtos/deleteProdutoController.js';
-import updateProdutoController from '../controllers/produtos/updateProdutoController.js';   
+import updateProdutoController from '../controllers/produtos/updateProdutoController.js';  
+import notFoundController from '../notFoundController.js'; 
 
 const router = express.Router();
 
@@ -15,11 +16,7 @@ router.put('/:idProduto', updateProdutoController);
 router.delete('/:idProduto', deleteProdutoController);
 
 // Catch-all para rotas não implementadas
-router.all('*', (req, res) => {
-    res.status(501).json({
-      message: 'Not implemented',
-    });
-  });
+router.all('*', notFoundController);
   
 
 export default router;

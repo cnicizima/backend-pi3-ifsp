@@ -4,6 +4,7 @@ import getPedidoProdutoController from '../controllers/pedidoProduto/getPedidoPr
 import createPedidoProdutoController from '../controllers/pedidoProduto/createPedidoProdutoController.js';
 import updatePedidoProdutoController from '../controllers/pedidoProduto/updatePedidoProdutoController.js';
 import deletePedidoProdutoController from '../controllers/pedidoProduto/deletePedidoProdutoController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
@@ -14,10 +15,6 @@ router.put('/:idPedidoProduto', updatePedidoProdutoController);
 router.delete('/:idPedidoProduto', deletePedidoProdutoController);
 
 // Catch-all para rotas não implementadas
-router.all('*', (req, res) => {
-    res.status(501).json({
-      message: 'Not implemented',
-    });
-  });
+router.all('*', notFoundController);
   
 export default router;
