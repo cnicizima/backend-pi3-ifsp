@@ -3,6 +3,7 @@ import express from 'express'
 import signUpController from '../controllers/auth/signUpController.js'
 import loginController from '../controllers/auth/loginController.js'
 import logoutController from '../controllers/auth/logoutController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
