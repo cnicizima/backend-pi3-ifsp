@@ -2,8 +2,7 @@ import express from 'express'
 import getUserController from '../controllers/users/getUserController.js';
 import listUserController from '../controllers/users/listUserController.js';    
 import updateUserController from '../controllers/users/updateUserController.js';
-import deleteUserController from '../controllers/users/deleteUSerController.js';
-import notFoundController from '../notFoundController.js';
+import deleteUserController from '../controllers/users/deleteUserController.js';
 
 const router = express.Router();
 

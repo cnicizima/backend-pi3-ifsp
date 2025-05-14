@@ -2,12 +2,13 @@
 import express from 'express'
 import signUpController from '../controllers/auth/signUpController.js'
 import loginController from '../controllers/auth/loginController.js'
-import notFoundController from '../notFoundController.js';
+import logoutController from '../controllers/auth/logoutController.js';
 
 const router = express.Router();
 
 router.post('/signup', signUpController);  
 router.post('/login', loginController);
+router.delete('/logout', logoutController);
 
 // Catch-all para rotas não implementadas
 router.all('*', notFoundController);

@@ -1,4 +1,5 @@
 import { getByEmail, userValidator } from "../../models/userModels.js";
+import { create } from "../../models/sessionModel.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
@@ -34,9 +35,19 @@ export default async function loginController(req, res, next) {
       });
     }
 
-    const accessToken = jwt.sign({ email: result.email, avatar: result.avatar, isAdmin: result.isAdmin }, process.env.JWT_SECRET, { expiresIn: '3h'});
+    // dados para guardar no token (payload)
+    const payload = {
+      id: result.id,
+      email: result.email,
+      avatar: result.avatar,
+      isAdmin: result.isAdmin 
+    }
 
-    const refreshToken = jwt.sign({ email: result.email, avatar: result.avatar, isAdmin: result.isAdmin }, process.env.JWT_SECRET, { expiresIn: '3d'});
+    const sessionResult = await create(result.id, req.headers['user-agent'])
+
+    const accessToken = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3h' });
+
+    const refreshToken = jwt.sign({...payload, sessionId: sessionResult.id }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
 
     res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: "None", secure: true, maxAge: 3 * 24 * 60 * 60 * 1000 })

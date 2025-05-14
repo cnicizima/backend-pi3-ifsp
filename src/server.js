@@ -22,6 +22,7 @@ import avaliacaoRouter from './routers/avaliacaoRouter.js';
 import mensagemRouter from './routers/mensagemRouter.js';
 import cupomRouter from './routers/cupomRouter.js';
 import authRouter from './routers/authRouter.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -35,8 +36,10 @@ app.use(cors()); // Permitir requisições de diferentes origens
 app.use(limiter); // Aplicar rate limiting globalmente para todas as rotas
 
 // Middlewares de parsing
+
 app.use(express.json()); // Parsing de JSON
-app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded - caso receba dados urlcoded
+app.use(express.urlencoded({ extended: true })); // Parsing de URL-encoded
+app.use(cookieParser())
 
 // Configuração de HSTS (HTTP Strict Transport Security)
 app.use(hstsMiddleware); // HSTS para segurança adicional
