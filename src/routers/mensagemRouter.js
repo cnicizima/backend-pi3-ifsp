@@ -4,6 +4,7 @@ import listMensagemController from '../controllers/mensagem/listMensagemControll
 import getMensagemController from '../controllers/mensagem/getMensagemController.js';
 import updateMensagemController from '../controllers/mensagem/updateMensagemController.js';
 import deleteMensagemController from '../controllers/mensagem/deleteMensagemController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
@@ -13,4 +14,7 @@ router.post('/', createMensagemController);
 router.put('/:idMensagem', updateMensagemController);
 router.delete('/:idMensagem', deleteMensagemController);
 
+// Catch-all para rotas não implementadas
+router.all('*', notFoundController);
+  
 export default router;

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "051c92c9-9e78-4f90-9c57-8e33bf63292c",
+		"_postman_id": "b6ddbe4e-51ae-4cb2-9f48-ec995f2c1141",
 		"name": "api-backend-pi3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43631102",
-		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-051c92c9-9e78-4f90-9c57-8e33bf63292c?action=share&source=collection_link&creator=43631102"
+		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-b6ddbe4e-51ae-4cb2-9f48-ec995f2c1141?action=share&source=collection_link&creator=43631102"
 	},
 	"item": [
 		{
@@ -1443,37 +1443,6 @@
 					"response": []
 				},
 				{
-					"name": "POST /auth/signup",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"15051995\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:8000/users",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "PUT /users/:id",
 					"request": {
 						"auth": {
@@ -1504,7 +1473,12 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "/auth",
+			"item": [
 				{
 					"name": "POST /auth/login",
 					"request": {
@@ -1529,6 +1503,67 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /auth/signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"12345678901\",\r\n  \"nome\": \"João da Silva\",\r\n  \"email\": \"joao@email.com\",\r\n  \"sexo\": \"Masculino\",\r\n  \"telefone\": \"11987654321\",\r\n  \"nascimento\": \"15051995\",\r\n  \"password\": \"senha123\",\r\n  \"isAdmin\": false,\r\n  \"avatar\": \"https://exemplo.com/avatar.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/auth/signup",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL /auth/logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqb2FvQGVtYWlsLmNvbSIsImF2YXRhciI6Imh0dHBzOi8vZXhlbXBsby5jb20vYXZhdGFyLmpwZyIsImlzQWRtaW4iOmZhbHNlLCJzZXNzaW9uSWQiOjEsImlhdCI6MTc0NzI1MDMxNCwiZXhwIjoxNzQ3NTA5NTE0fQ.2vcEWXrMlbzqap6TmM46YcZ5ciEqD572MFEPwyQqYHw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/auth/logout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"logout"
 							]
 						}
 					},

@@ -13,4 +13,7 @@ router.delete('/:id', deleteUserController);
 
 //rota post para criar user é via auth/signup
 
+// Catch-all para rotas não implementadas
+router.all('*', notFoundController);
+  
 export default router;

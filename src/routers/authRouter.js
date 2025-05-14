@@ -10,5 +10,7 @@ router.post('/signup', signUpController);
 router.post('/login', loginController);
 router.delete('/logout', logoutController);
 
-
+// Catch-all para rotas não implementadas
+router.all('*', notFoundController);
+  
 export default router;  
