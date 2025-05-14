@@ -3,6 +3,7 @@ import getUserController from '../controllers/users/getUserController.js';
 import listUserController from '../controllers/users/listUserController.js';    
 import updateUserController from '../controllers/users/updateUserController.js';
 import deleteUserController from '../controllers/users/deleteUserController.js';
+import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
