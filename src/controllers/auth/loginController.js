@@ -1,5 +1,5 @@
 import { getByEmail, userValidator } from "../../models/userModels.js";
-import { create } from "../../models/sessionModel.js";
+import { create } from "../../models/sessionModels.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 

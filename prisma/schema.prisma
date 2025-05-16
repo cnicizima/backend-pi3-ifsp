@@ -6,34 +6,34 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id         Int     @unique @default(autoincrement())
-  cpf        String  @id @db.Char(11)
-  nome       String  @db.VarChar(255)
-  email      String  @unique @db.VarChar(255)
-  sexo       String? @db.VarChar(30)
-  telefone   String  @db.VarChar(15)
-  nascimento String  @db.Char(8) // PASSAR DO FRONT NO FORMATO DDMMYYYY
-  password   String  @db.VarChar(255)
+  id         Int     @id @default(autoincrement())
+  cpf        String  @unique
+  nome       String
+  email      String  @unique
+  sexo       String?
+  telefone   String
+  nascimento String // PASSAR DO FRONT NO FORMATO DDMMYYYY
+  password   String
   isAdmin    Boolean @default(false)
-  avatar     String? @db.Text // url da imagem. Se for postar foto, precisa verificar o tipo certo.
+  avatar     String?
 
   enderecos  Endereco[]
   pedidos    Pedido[]
   avaliacoes Avaliacao[]
   favoritos  Favoritos[]
   mensagens  Mensagem[]
-  sessions   session[]
+  sessions   Session[]
 }
 
-model session {
+model Session {
   id        Int      @id @default(autoincrement())
   userId    Int
-  client    String   @db.VarChar(255)
+  client    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -42,15 +42,15 @@ model session {
 
 model Endereco {
   idEndereco  Int     @id @default(autoincrement())
-  usuarioCpf  String  @db.Char(11)
-  apelido     String  @db.VarChar(100)
-  cep         String  @db.Char(8)
-  rua         String  @db.VarChar(255)
-  numero      String  @db.VarChar(10)
-  complemento String? @db.VarChar(255)
-  cidade      String  @db.VarChar(255)
-  estado      String  @db.Char(2)
-  bairro      String  @db.VarChar(255)
+  usuarioCpf  String
+  apelido     String
+  cep         String
+  rua         String
+  numero      String
+  complemento String?
+  cidade      String
+  estado      String
+  bairro      String
 
   usuario User @relation(fields: [usuarioCpf], references: [cpf])
 
@@ -59,10 +59,10 @@ model Endereco {
 
 model Pedido {
   idPedido   Int      @id @default(autoincrement())
-  usuarioCpf String   @db.Char(11)
+  usuarioCpf String
   idEndereco Int
-  valorTotal Decimal  @db.Decimal(10, 2)
-  status     String   @db.VarChar(100)
+  valorTotal Float
+  status     String
   dataCompra DateTime @default(now())
   idCupom    Int?
 
@@ -77,9 +77,9 @@ model Pedido {
 model Pagamento {
   idPagamento   Int       @id @default(autoincrement())
   idPedido      Int       @unique
-  metodo        String    @db.VarChar(100)
-  status        String    @db.VarChar(100)
-  valorPago     Decimal   @db.Decimal(10, 2)
+  metodo        String
+  status        String
+  valorPago     Float
   dataPagamento DateTime?
 
   pedido Pedido @relation(fields: [idPedido], references: [idPedido])
@@ -87,19 +87,19 @@ model Pagamento {
 
 model Produto {
   idProduto      Int     @id @default(autoincrement())
-  fotoVinho      String? @db.Text //url da foto
-  nome           String  @db.VarChar(255)
-  descricao      String  @db.Text
-  preco          Decimal @db.Decimal(10, 2)
-  classificacao  Decimal @db.Decimal(3, 2)
-  categoria      String  @db.VarChar(50)
-  gustativo      String? @db.Text
-  olfativo       String? @db.Text
-  regiao         String? @db.VarChar(150)
-  amadurecimento String? @db.Text
-  analises       String? @db.Text
-  uvas           String? @db.VarChar(255)
-  temperatura    String? @db.VarChar(50)
+  fotoVinho      String?
+  nome           String
+  descricao      String?
+  preco          Float
+  classificacao  Float
+  categoria      String
+  gustativo      String?
+  olfativo       String?
+  regiao         String?
+  amadurecimento String?
+  analises       String?
+  uvas           String?
+  temperatura    String?
 
   estoque    Estoque?
   avaliacoes Avaliacao[]
@@ -110,17 +110,17 @@ model Produto {
 model Estoque {
   idEstoque  Int @id @default(autoincrement())
   idProduto  Int @unique
-  quantidade Int @default(0) @db.Int
+  quantidade Int @default(0)
 
   produto Produto @relation(fields: [idProduto], references: [idProduto])
 }
 
 model PedidoProduto {
-  idPedidoProduto Int     @id @default(autoincrement())
+  idPedidoProduto Int   @id @default(autoincrement())
   idPedido        Int
   idProduto       Int
-  quantidade      Int     @db.Int
-  valorItem       Decimal @db.Decimal(10, 2)
+  quantidade      Int
+  valorItem       Float
 
   pedido  Pedido  @relation(fields: [idPedido], references: [idPedido])
   produto Produto @relation(fields: [idProduto], references: [idProduto])
@@ -128,7 +128,7 @@ model PedidoProduto {
 
 model Favoritos {
   idFavorito Int    @id @default(autoincrement())
-  usuarioCpf String @db.Char(11)
+  usuarioCpf String
   idProduto  Int
 
   usuario User    @relation(fields: [usuarioCpf], references: [cpf])
@@ -137,10 +137,10 @@ model Favoritos {
 
 model Avaliacao {
   idAvaliacao Int      @id @default(autoincrement())
-  usuarioCpf  String   @db.Char(11)
+  usuarioCpf  String
   idProduto   Int
-  avaliacao   Decimal  @db.Decimal(2, 1)
-  conteudo    String?  @db.Text
+  avaliacao   Float
+  conteudo    String?
   dataCriacao DateTime @default(now())
 
   usuario User    @relation(fields: [usuarioCpf], references: [cpf])
@@ -149,9 +149,9 @@ model Avaliacao {
 
 model Mensagem {
   idMensagem Int      @id @default(autoincrement())
-  usuarioCpf String   @db.Char(11)
-  assunto    String   @db.VarChar(255)
-  conteudo   String   @db.Text
+  usuarioCpf String
+  assunto    String
+  conteudo   String
   dataEnvio  DateTime @default(now())
 
   usuario User @relation(fields: [usuarioCpf], references: [cpf])
@@ -159,7 +159,7 @@ model Mensagem {
 
 model Cupom {
   idCupom  Int      @id @default(autoincrement())
-  codigo   String   @unique @db.VarChar(50)
-  desconto Decimal  @db.Decimal(5, 2)
+  codigo   String   @unique
+  desconto Float
   pedidos  Pedido[]
 }
