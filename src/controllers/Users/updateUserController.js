@@ -1,4 +1,5 @@
 import { update, userValidator } from "../../models/userModels.js";
+import bcrypt from "bcrypt";
 
 export default async function updateUserController(req, res, next) {
   try {
@@ -28,6 +29,11 @@ export default async function updateUserController(req, res, next) {
       });
     }
 
+    // Se o campo password existir, encripte antes de atualizar
+    if (user.password) {
+      user.password = bcrypt.hashSync(user.password, 10);
+    }
+
     // Atualiza o usuário
     const result = await update(+id, user);
 
@@ -37,11 +43,13 @@ export default async function updateUserController(req, res, next) {
       });
     }
 
+    delete result.password;
+
     return res.status(200).json({
       message: "Usuário atualizado com sucesso.",
       user: result,
     });
-  }  catch (error) {
-    next(error)
+  } catch (error) {
+    next(error);
   }
 }
