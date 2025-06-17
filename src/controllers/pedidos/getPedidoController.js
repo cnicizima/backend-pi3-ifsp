@@ -3,12 +3,15 @@ import jwt from "jsonwebtoken";
 
 export default async function getPedidoController(req, res, next) {
   try {
-    // Recupera o token JWT do cookie
-    const token = req.cookies.accessToken;
+    // Recupera o token JWT do header Authorization
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
-      return res.status(401).json({ message: "Token não fornecido." });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "Token não fornecido ou inválido." });
     }
+
+    // Extrai o token do header
+    const token = authHeader.split(" ")[1];
 
     // Decodifica o token para obter o CPF do usuário
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
