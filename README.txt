@@ -43,3 +43,7 @@ Headers:
 {
   "Cookie": "accessToken=<jwt_token>"
 }
+ou:
+{
+  "Authorization": "Bearer <access_token>"
+}
