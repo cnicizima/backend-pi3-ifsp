@@ -35,6 +35,21 @@ export async function getById(id) {
   });
 }
 
+export async function getByCpf(cpf) {
+  return await prisma.pedido.findMany({
+    where: { usuarioCpf: cpf },
+    include: {
+      endereco: true, // Inclui os dados do endereço relacionado
+      pagamento: true, // Inclui os dados do pagamento relacionado
+      produtos: {
+        include: {
+          produto: true, // Inclui os dados dos produtos relacionados
+        },
+      },
+    },
+  });
+}
+
 export async function list() {
   return await prisma.pedido.findMany();
 }

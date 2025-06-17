@@ -40,6 +40,7 @@ export default async function loginController(req, res, next) {
       id: result.id,
       email: result.email,
       avatar: result.avatar,
+      cpf: result.cpf,
       isAdmin: result.isAdmin 
     }
 
