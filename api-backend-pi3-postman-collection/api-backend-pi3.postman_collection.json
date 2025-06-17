@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b6ddbe4e-51ae-4cb2-9f48-ec995f2c1141",
+		"_postman_id": "b6017c08-a956-4426-a6cf-2c6b0b49d08b",
 		"name": "api-backend-pi3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43631102",
-		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-b6ddbe4e-51ae-4cb2-9f48-ec995f2c1141?action=share&source=collection_link&creator=43631102"
+		"_collection_link": "https://ciro-979815.postman.co/workspace/Ciro's-Workspace~f5276a59-ac02-46bd-8a53-d9716de38151/collection/43631102-b6017c08-a956-4426-a6cf-2c6b0b49d08b?action=share&source=collection_link&creator=43631102"
 	},
 	"item": [
 		{
@@ -88,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 1,\r\n  \"avaliacao\": 4.5,\r\n  \"conteudo\": \"Ótimo vinho, sabor incrível!\",\r\n  \"dataCriacao\": \"2025-03-26T16:00:00.000Z\"\r\n}\r\n",
+							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 21,\r\n  \"avaliacao\": 4.5,\r\n  \"conteudo\": \"Ótimo vinho, sabor incrível!\",\r\n  \"dataCriacao\": \"2025-03-26T16:00:00.000Z\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -362,7 +362,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 100\r\n}",
+							"raw": "{\r\n  \"idProduto\": 21,\r\n  \"quantidade\": 100\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -666,7 +666,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 1\r\n}\r\n",
+							"raw": "{\r\n  \"usuarioCpf\": \"12345678901\",\r\n  \"idProduto\": 21\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -906,7 +906,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"metodo\": \"Cartão\",\r\n  \"status\": \"Pago\",\r\n  \"valorPago\": 189.99,\r\n  \"dataPagamento\": \"2025-03-26T00:00:00Z\"\r\n}\r\n",
+							"raw": "{\r\n  \"idPedido\": 41,\r\n  \"metodo\": \"Cartão\",\r\n  \"status\": \"Pago\",\r\n  \"valorPago\": 189.99,\r\n  \"dataPagamento\": \"2025-03-26T00:00:00Z\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -988,36 +988,26 @@
 					"response": []
 				},
 				{
-					"name": "GET /pedidos/:idPedido",
+					"name": "GET /pedidos/",
 					"request": {
 						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8000/pedidos/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"pedidos",
-								"1"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9hb0BlbWFpbC5jb20iLCJhdmF0YXIiOiJodHRwczovL2V4ZW1wbG8uY29tL2F2YXRhci5qcGciLCJjcGYiOiIxMjM0NTY3ODkwMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3NTAxODU0MTUsImV4cCI6MTc1MDE5NjIxNX0.HqxCEHv-Xp2CrHcBQzzWoIr2Nt76orbMSbpke47EGDQ",
+									"type": "string"
+								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET /pedidos",
-					"request": {
-						"auth": {
-							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiam9hb0BlbWFpbC5jb20iLCJhdmF0YXIiOiJodHRwczovL2V4ZW1wbG8uY29tL2F2YXRhci5qcGciLCJjcGYiOiIxMjM0NTY3ODkwMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3NTAxODU0MTUsImV4cCI6MTc1MDE5NjIxNX0.HqxCEHv-Xp2CrHcBQzzWoIr2Nt76orbMSbpke47EGDQ",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "https://localhost:8000/pedidos",
 							"protocol": "https",
@@ -1027,6 +1017,29 @@
 							"port": "8000",
 							"path": [
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /pedidos/list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/pedidos/list",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"pedidos",
+								"list"
 							]
 						}
 					},
@@ -1178,7 +1191,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"idPedido\": 1,\r\n  \"idProduto\": 1,\r\n  \"quantidade\": 1,\r\n  \"valorItem\": 189.99\r\n}\r\n\r\n",
+							"raw": "{\r\n  \"idPedido\": 41,\r\n  \"idProduto\": 21,\r\n  \"quantidade\": 1,\r\n  \"valorItem\": 189.99\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1312,7 +1325,13 @@
 							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"nome\": \"Vinho Tinto Reserva\",\r\n  \"descricao\": \"Vinho de alta qualidade, envelhecido 10 anos.\",\r\n  \"preco\": 199.99,\r\n  \"classificacao\": 4.7,\r\n  \"categoria\": \"Tinto\",\r\n  \"gustativo\": \"Encorpado e macio\",\r\n  \"olfativo\": \"Notas de frutas vermelhas\",\r\n  \"regiao\": \"Mendoza - Argentina\",\r\n  \"amadurecimento\": \"12 meses em barris de carvalho\",\r\n  \"analises\": \"Premiação Ouro 2023\",\r\n  \"uvas\": \"Cabernet Sauvignon\",\r\n  \"temperatura\": \"16°C\",\r\n  \"fotoVinho\": \"https://exemplo.com/vinho.jpg\"\r\n}\r\n",
