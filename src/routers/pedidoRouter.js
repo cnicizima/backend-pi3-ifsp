@@ -8,8 +8,8 @@ import notFoundController from '../notFoundController.js';
 
 const router = express.Router();
 
-router.get('/:idPedido', getPedidoController);
-router.get('/', listPedidoController);
+router.get('/', getPedidoController);
+router.get('/list', listPedidoController);
 router.post('/', createPedidoController);
 router.put('/:idPedido', updatePedidoController);
 router.delete('/:idPedido', deletePedidoController);
