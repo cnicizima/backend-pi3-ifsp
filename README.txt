@@ -32,3 +32,14 @@ não é necessário usar o produtoValidator no list, pois a listagem geralmente 
 Se quiser apagar o banco de dados, rodas o srcipt: 
 
 node zerar_banco_hard_reset.js
+
+
+
+Exemplo de Requisição
+Endpoint: GET /pedidos
+
+Headers:
+
+{
+  "Cookie": "accessToken=<jwt_token>"
+}

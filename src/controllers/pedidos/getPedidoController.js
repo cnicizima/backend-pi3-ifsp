@@ -1,28 +1,31 @@
-import { getById } from "../../models/pedidoModels.js";
+import { getByCpf } from "../../models/pedidoModels.js";
+import jwt from "jsonwebtoken";
 
 export default async function getPedidoController(req, res, next) {
   try {
-    const { idPedido } = req.params;
+    // Recupera o token JWT do cookie
+    const token = req.cookies.accessToken;
 
-    if (!idPedido || isNaN(+idPedido)) {
-      return res.status(400).json({
-        message: "ID inválido. Certifique-se de que o ID é um número válido.",
-      });
+    if (!token) {
+      return res.status(401).json({ message: "Token não fornecido." });
     }
 
-    // Busca o pedido pelo ID
-    const result = await getById(+idPedido);
+    // Decodifica o token para obter o CPF do usuário
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { cpf } = decoded;
 
-    if (!result) {
-      return res.status(404).json({
-        message: "Pedido não encontrado.",
-      });
+    if (!cpf) {
+      return res.status(400).json({ message: "CPF não encontrado no token." });
     }
 
-    return res.status(200).json({
-      message: "Pedido encontrado com sucesso.",
-      pedido: result,
-    });
+    // Busca os pedidos pelo CPF
+    const pedidos = await getByCpf(cpf);
+
+    if (!pedidos || pedidos.length === 0) {
+      return res.status(404).json({ message: "Nenhum pedido encontrado para este usuário." });
+    }
+
+    return res.status(200).json(pedidos);
   } catch (error) {
     next(error);
   }
