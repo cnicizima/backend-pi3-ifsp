@@ -5,6 +5,7 @@ import https from 'https';
 import helmet from 'helmet';
 import { errorsHandler } from './middlewares/errorsHandler.js';
 import { logger } from './middlewares/logger.js'; // Middleware de log
+import { auth } from './middlewares/auth.js'; 
 import limiter  from './middlewares/limiter.js';
 import hstsMiddleware  from './middlewares/hstsMiddleware.js'; // Middleware de HSTS
 import notFoundController from '../src/notFoundController.js'; // Controller para rotas não encontradas
