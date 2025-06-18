@@ -19,7 +19,7 @@ export default async function updateUserController(req, res, next) {
     const { success, error } = userValidator(user, {
       name: true,
       email: true,
-      pass: true,
+      password: true,
     });
 
     if (!success) {
