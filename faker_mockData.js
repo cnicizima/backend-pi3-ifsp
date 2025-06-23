@@ -8,15 +8,17 @@ async function main() {
 
   // 1. Criar Cupons
   const cupons = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     const cupom = await prisma.cupom.create({
       data: {
         codigo: faker.string.alphanumeric(8).toUpperCase(),
-        desconto: faker.number.float({ min: 5, max: 50, precision: 0.01 }),
+        desconto: faker.helpers.arrayElement([5, 10, 15, 20, 25]), // Seleciona aleatoriamente entre os valores fixos
       },
     });
     cupons.push(cupom);
-    console.log(`Cupom criado: ${cupom.codigo}`);
+    console.log(
+      `Cupom criado: ${cupom.codigo} com desconto de ${cupom.desconto}%`
+    );
   }
 
   // 2. Criar Produtos e Estoque
