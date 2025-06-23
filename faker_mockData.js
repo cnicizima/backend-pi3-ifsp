@@ -228,13 +228,7 @@ async function main() {
             const year = date.getFullYear(); // Ano com 4 dígitos
             return `${day}${month}${year}`; // Retorna no formato DDMMYYYY
           })(),
-          password: (() => {
-            let senha;
-            do {
-              senha = faker.animal.type(); // Gera o nome de um animal
-            } while (senha.length <= 6); // Garante que a senha tenha mais de 6 letras
-            return senha;
-          })(),
+          password:"$2b$10$kLpscK/ONGPgjiBIPofM2.96zU/BnncZ5BEK6eiqwqQ2o7NhgnX2u",
           isAdmin: faker.datatype.boolean(),
           avatar: `https://github.com/${primeiroNome}.png`, // Gera o avatar com o primeiro nome
         },
