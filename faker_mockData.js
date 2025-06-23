@@ -133,6 +133,19 @@ async function main() {
     "Doce, com notas de frutas secas e final aveludado.",
   ];
 
+  const fotosVinhos = [
+    "https://res.cloudinary.com/duucjfiew/image/upload/tinto_salton_ip_ocqgii.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Castellamare_Barricas_Cabernet_Sauvignon-removebg-preview_qi6zqa.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/MERLOT_L.A._CAVE-removebg-preview_kyh1pf.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/aurora_saperavi-removebg-preview_sdok8o.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Primeira_Estrada_Gran_Reserva_Syrah-removebg-preview_jvzgoi.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/tinto_touriga_zxgpb9.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Garibaldi_Precioso_Tinto_Demi-Sec-removebg-preview_mlmk8b.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Tempos_de_G%C3%B3es_M%C3%ADneres_Syrah-removebg-preview_uu1qy8.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Luiz_Argenta_LA_Jovem_Shiraz-removebg-preview_gxrgcu.png",
+    "https://res.cloudinary.com/duucjfiew/image/upload/Vinho1.png"
+  ];
+
   const produtos = [];
   for (let i = 0; i < 20; i++) {
     const produto = await prisma.produto.create({
@@ -152,7 +165,7 @@ async function main() {
         analises: faker.helpers.arrayElement(descricoesAnalises),
         uvas: faker.helpers.arrayElement(uvasReais),
         temperatura: `${faker.number.int({ min: 8, max: 18 })}°C`,
-        fotoVinho: faker.image.url(),
+        fotoVinho: faker.helpers.arrayElement(fotosVinhos),
       },
     });
 
@@ -170,31 +183,55 @@ async function main() {
 
   // 3. Criar Usuários e suas dependências
   for (let i = 0; i < 10; i++) {
-    const nomeCompleto = faker.person.fullName();
-    const primeiroNome = nomeCompleto.split(" ")[0].toLowerCase(); // Extrai o primeiro nome e converte para minúsculas
+    let usuario;
 
-    const usuario = await prisma.user.create({
-      data: {
-        cpf: faker.string.numeric(11),
-        nome: nomeCompleto,
-        email: faker.internet.email(),
-        sexo: faker.helpers.arrayElement(["Masculino", "Feminino"]),
-        telefone: faker.helpers.replaceSymbols("(##) #####-####", {
-          "#": () => faker.number.int({ min: 0, max: 9 }),
-          "(": () => faker.number.int({ min: 1, max: 9 }), // Garante que o DDD seja de 1 a 9
-        }),
-        nascimento: (() => {
-          const date = faker.date.birthdate({ min: 18, max: 60, mode: "age" });
-          const day = String(date.getDate()).padStart(2, "0"); // Dia com 2 dígitos
-          const month = String(date.getMonth() + 1).padStart(2, "0"); // Mês com 2 dígitos
-          const year = date.getFullYear(); // Ano com 4 dígitos
-          return `${day}${month}${year}`; // Retorna no formato DDMMYYYY
-        })(),
-        password: faker.internet.password(),
-        isAdmin: faker.datatype.boolean(),
-        avatar: `https://github.com/${primeiroNome}.png`, // Gera o avatar com o primeiro nome
-      },
-    });
+    if (i === 0) {
+      // Primeiro usuário é o administrador
+      usuario = await prisma.user.create({
+        data: {
+          cpf: "12312312312",
+          nome: "admin",
+          email: "admin@admin.com",
+          sexo: "Masculino",
+          telefone: "11111111111",
+          nascimento: "01011900",
+          password: "$2b$10$IjeE8oQIDbMxN.xOLJ3a2u71AsLsi1SFyHLUfivt3igOVFtignxbi",
+          isAdmin: true,
+          avatar: "https://res.cloudinary.com/duucjfiew/image/upload/default-profile-photo_pidfs8.jpg",
+        },
+      });
+    } else {
+      // Usuários aleatórios
+      const nomeCompleto = faker.person.fullName();
+      const primeiroNome = nomeCompleto.split(" ")[0].toLowerCase(); // Extrai o primeiro nome e converte para minúsculas
+
+      usuario = await prisma.user.create({
+        data: {
+          cpf: faker.string.numeric(11),
+          nome: nomeCompleto,
+          email: faker.internet.email(),
+          sexo: faker.helpers.arrayElement(["Masculino", "Feminino"]),
+          telefone: faker.helpers.replaceSymbols("(##) #####-####", {
+            "#": () => faker.number.int({ min: 0, max: 9 }),
+            "(": () => faker.number.int({ min: 1, max: 9 }), // Garante que o DDD seja de 1 a 9
+          }),
+          nascimento: (() => {
+            const date = faker.date.birthdate({
+              min: 18,
+              max: 60,
+              mode: "age",
+            });
+            const day = String(date.getDate()).padStart(2, "0"); // Dia com 2 dígitos
+            const month = String(date.getMonth() + 1).padStart(2, "0"); // Mês com 2 dígitos
+            const year = date.getFullYear(); // Ano com 4 dígitos
+            return `${day}${month}${year}`; // Retorna no formato DDMMYYYY
+          })(),
+          password: faker.internet.password(),
+          isAdmin: faker.datatype.boolean(),
+          avatar: `https://github.com/${primeiroNome}.png`, // Gera o avatar com o primeiro nome
+        },
+      });
+    }
 
     console.log(`Usuário criado: ${usuario.cpf}`);
 
@@ -238,7 +275,7 @@ async function main() {
           data: {
             usuarioCpf: usuario.cpf,
             idEndereco: endereco.idEndereco,
-            valorTotal, 
+            valorTotal,
             status: faker.helpers.arrayElement([
               "Pendente",
               "Pago",
