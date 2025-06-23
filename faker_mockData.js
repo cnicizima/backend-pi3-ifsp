@@ -143,7 +143,7 @@ async function main() {
     "https://res.cloudinary.com/duucjfiew/image/upload/Garibaldi_Precioso_Tinto_Demi-Sec-removebg-preview_mlmk8b.png",
     "https://res.cloudinary.com/duucjfiew/image/upload/Tempos_de_G%C3%B3es_M%C3%ADneres_Syrah-removebg-preview_uu1qy8.png",
     "https://res.cloudinary.com/duucjfiew/image/upload/Luiz_Argenta_LA_Jovem_Shiraz-removebg-preview_gxrgcu.png",
-    "https://res.cloudinary.com/duucjfiew/image/upload/Vinho1.png"
+    "https://res.cloudinary.com/duucjfiew/image/upload/Vinho1.png",
   ];
 
   const produtos = [];
@@ -195,9 +195,11 @@ async function main() {
           sexo: "Masculino",
           telefone: "11111111111",
           nascimento: "01011900",
-          password: "$2b$10$IjeE8oQIDbMxN.xOLJ3a2u71AsLsi1SFyHLUfivt3igOVFtignxbi",
+          password:
+            "$2b$10$IjeE8oQIDbMxN.xOLJ3a2u71AsLsi1SFyHLUfivt3igOVFtignxbi",
           isAdmin: true,
-          avatar: "https://res.cloudinary.com/duucjfiew/image/upload/default-profile-photo_pidfs8.jpg",
+          avatar:
+            "https://res.cloudinary.com/duucjfiew/image/upload/default-profile-photo_pidfs8.jpg",
         },
       });
     } else {
@@ -226,7 +228,13 @@ async function main() {
             const year = date.getFullYear(); // Ano com 4 dígitos
             return `${day}${month}${year}`; // Retorna no formato DDMMYYYY
           })(),
-          password: faker.internet.password(),
+          password: (() => {
+            let senha;
+            do {
+              senha = faker.animal.type(); // Gera o nome de um animal
+            } while (senha.length <= 6); // Garante que a senha tenha mais de 6 letras
+            return senha;
+          })(),
           isAdmin: faker.datatype.boolean(),
           avatar: `https://github.com/${primeiroNome}.png`, // Gera o avatar com o primeiro nome
         },
