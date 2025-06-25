@@ -67,7 +67,7 @@ API RESTful para um e-commerce de vinhos, desenvolvida como projeto acadêmico n
    ```bash
    npm run dev
    ```
-   O servidor rodará por padrão em HTTPS na porta 3000.
+   O servidor rodará por padrão em HTTPS na porta 8000.
 
 ---
 
